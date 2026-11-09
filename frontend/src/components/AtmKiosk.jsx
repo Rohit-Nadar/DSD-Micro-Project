@@ -20,6 +20,7 @@ export default function AtmKiosk({ onResetTriggered }) {
   // ATM Screen States: CARD_INSERT | PIN_ENTRY | HOME | TRANSACTION | APPROVAL
   const [atmState, setAtmState] = useState('CARD_INSERT');
   const [activeCardId, setActiveCardId] = useState('');
+  const [enteredPin, setEnteredPin] = useState('');
   const [accountData, setAccountData] = useState(null);
   const [transactions, setTransactions] = useState([]);
   const [selectedAction, setSelectedAction] = useState(null);
@@ -81,6 +82,7 @@ export default function AtmKiosk({ onResetTriggered }) {
     try {
       const res = await api.submitPin(activeCardId, pin);
       if (res.authenticated) {
+        setEnteredPin(pin);
         setAccountData(res.account);
         // Fetch recent transactions
         loadTransactions(activeCardId);
@@ -164,7 +166,7 @@ export default function AtmKiosk({ onResetTriggered }) {
       const simTypeMap = { 'WITHDRAW': 0, 'DEPOSIT': 1, 'BALANCE_ENQUIRY': 2, 'TRANSFER': 3, 'INTEREST': 4 };
       const localRes = browserSimulator.runSimulation({
         cardId: Number(activeCardId),
-        pin: 123456,
+        pin: Number(enteredPin) || 123456,
         txType: simTypeMap[txType] ?? 0,
         amount: Number(amount),
         targetCard: Number(targetCardId)
@@ -204,6 +206,7 @@ export default function AtmKiosk({ onResetTriggered }) {
   const handleResetToCardInsert = () => {
     setAtmState('CARD_INSERT');
     setActiveCardId('');
+    setEnteredPin('');
     setAccountData(null);
     setErrorMessage('');
     setSelectedAction(null);

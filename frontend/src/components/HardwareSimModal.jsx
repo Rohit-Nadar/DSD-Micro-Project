@@ -21,8 +21,19 @@ import { formatCurrency } from '../utils/formatters';
 import { playKeyBeep } from '../utils/audio';
 
 export default function HardwareSimModal() {
-  const [cardId, setCardId] = useState(100123);
-  const [pin, setPin] = useState(123456);
+  const memberPins = {
+    100123: 123456,
+    100124: 234567,
+    100125: 345678,
+    100126: 456789
+  };
+
+  const handleCardChange = (newCid) => {
+    setCardId(newCid);
+    if (memberPins[newCid]) {
+      setPin(memberPins[newCid]);
+    }
+  };
   const [txType, setTxType] = useState(0); // 0=Withdraw, 1=Deposit, 2=Balance, 3=Transfer, 4=Interest
   const [amount, setAmount] = useState(2000);
   const [targetCard, setTargetCard] = useState(100124);
@@ -327,13 +338,13 @@ endmodule`;
                 <label className="text-slate-400 block mb-1">Card ID [31:0]</label>
                 <select
                   value={cardId}
-                  onChange={(e) => setCardId(Number(e.target.value))}
+                  onChange={(e) => handleCardChange(Number(e.target.value))}
                   className="w-full bg-slate-950 border border-slate-700 rounded-xl px-2.5 py-2 text-white outline-none font-mono"
                 >
-                  <option value={100123}>100123 (Rohit - Bal: ₹5,000)</option>
-                  <option value={100124}>100124 (Vikash - Bal: ₹8,000)</option>
-                  <option value={100125}>100125 (Vahini - Bal: ₹12,000)</option>
-                  <option value={100126}>100126 (Sujith - Bal: ₹3,000)</option>
+                  <option value={100123}>100123 (Rohit • PIN: 123456)</option>
+                  <option value={100124}>100124 (Vikash • PIN: 234567)</option>
+                  <option value={100125}>100125 (Vahini • PIN: 345678)</option>
+                  <option value={100126}>100126 (Sujith • PIN: 456789)</option>
                   <option value={999999}>999999 (Invalid Card Test)</option>
                 </select>
               </div>

@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
-import { CreditCard, ArrowRight, ShieldAlert, CheckCircle, Sparkles } from 'lucide-react';
+import { CreditCard, ArrowRight, ShieldAlert, CheckCircle, Sparkles, KeyRound } from 'lucide-react';
 import { playCardInsertSound, playKeyBeep } from '../utils/audio';
 
 export default function ScreenCardInsert({ onCardVerified, errorMsg, isLoading }) {
   const [cardInput, setCardInput] = useState('');
   const [selectedDemo, setSelectedDemo] = useState(null);
 
+  // Each registered member has a unique Card ID, distinct PIN, and initial balance
   const demoAccounts = [
-    { card: '100123', name: 'Rohit Nadar', role: 'Team Lead (URK26AI1021)', bal: '₹5,000' },
-    { card: '100124', name: 'Vikash', role: 'Member (URK26AI1022)', bal: '₹8,000' },
-    { card: '100125', name: 'Vahini Muthu', role: 'Member (URK26AI1023)', bal: '₹12,000' },
-    { card: '100126', name: 'Sujith S.', role: 'Member (URK26AI1024)', bal: '₹3,000' },
+    { card: '100123', pin: '123456', name: 'Rohit Nadar', role: 'Team Lead (URK26AI1021)', bal: '₹5,000' },
+    { card: '100124', pin: '234567', name: 'Vikash', role: 'Member (URK26AI1022)', bal: '₹8,000' },
+    { card: '100125', pin: '345678', name: 'Vahini Muthu', role: 'Member (URK26AI1023)', bal: '₹12,000' },
+    { card: '100126', pin: '456789', name: 'Sujith S.', role: 'Member (URK26AI1024)', bal: '₹3,000' },
   ];
 
   const handleInsert = (cardIdToUse) => {
@@ -35,7 +36,7 @@ export default function ScreenCardInsert({ onCardVerified, errorMsg, isLoading }
           INSERT YOUR ATM CARD
         </h2>
         <p className="text-sm text-slate-400">
-          Enter your 6-digit Card ID or select a pre-loaded demonstration account
+          Enter your 6-digit Card ID or select any registered member below
         </p>
       </div>
 
@@ -85,14 +86,14 @@ export default function ScreenCardInsert({ onCardVerified, errorMsg, isLoading }
         )}
       </div>
 
-      {/* Quick Select Demo Accounts */}
+      {/* Quick Select Demo Accounts with DISTINCT PASSWORDS */}
       <div className="space-y-3">
         <div className="flex items-center justify-between text-xs text-slate-400 font-medium px-1">
           <div className="flex items-center space-x-1.5">
             <Sparkles className="h-3.5 w-3.5 text-teal-400" />
-            <span>Pre-Configured Demonstration Accounts (Simulink Table 1.1)</span>
+            <span>Registered Team Members (Different Passwords for Each Member)</span>
           </div>
-          <span className="text-slate-500">1-Click Fast Load</span>
+          <span className="text-slate-500">Click to Select</span>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -104,28 +105,36 @@ export default function ScreenCardInsert({ onCardVerified, errorMsg, isLoading }
                 setSelectedDemo(acc.card);
                 handleInsert(acc.card);
               }}
-              className={`p-3.5 rounded-xl border cursor-pointer transition-all flex items-center justify-between group ${
+              className={`p-3.5 rounded-2xl border cursor-pointer transition-all flex items-center justify-between group ${
                 selectedDemo === acc.card
                   ? 'bg-teal-500/15 border-teal-500/60 shadow-md shadow-teal-500/10'
-                  : 'bg-slate-900/60 hover:bg-slate-850 border-slate-800 hover:border-slate-700'
+                  : 'bg-slate-900/70 hover:bg-slate-850 border-slate-800 hover:border-slate-700'
               }`}
             >
               <div className="flex items-center space-x-3">
-                <div className="h-9 w-9 rounded-lg bg-slate-800 group-hover:bg-teal-500/20 flex items-center justify-center transition-colors">
+                <div className="h-10 w-10 rounded-xl bg-slate-800 group-hover:bg-teal-500/20 flex items-center justify-center transition-colors">
                   <CreditCard className="h-5 w-5 text-teal-400" />
                 </div>
                 <div>
                   <div className="font-semibold text-sm text-white group-hover:text-teal-300 transition-colors">
                     {acc.name}
                   </div>
-                  <div className="text-xs text-slate-400 font-mono">
-                    ID: <span className="text-teal-400">{acc.card}</span> • {acc.bal}
+                  <div className="text-xs text-slate-400 font-mono flex items-center gap-2 mt-0.5">
+                    <span>Card: <strong className="text-teal-400">{acc.card}</strong></span>
+                    <span>•</span>
+                    <span className="flex items-center text-amber-300">
+                      <KeyRound className="h-3 w-3 mr-0.5 inline" />
+                      PIN: <strong>{acc.pin}</strong>
+                    </span>
                   </div>
                 </div>
               </div>
 
-              <div className="text-xs font-mono px-2 py-1 rounded bg-slate-800 text-slate-400 group-hover:bg-teal-500 group-hover:text-slate-950 transition-colors">
-                Select →
+              <div className="text-right">
+                <div className="text-xs font-mono font-bold text-emerald-400">{acc.bal}</div>
+                <div className="text-[10px] text-slate-500 mt-0.5 font-mono group-hover:text-teal-400">
+                  Select →
+                </div>
               </div>
             </div>
           ))}
@@ -134,4 +143,3 @@ export default function ScreenCardInsert({ onCardVerified, errorMsg, isLoading }
     </div>
   );
 }
-

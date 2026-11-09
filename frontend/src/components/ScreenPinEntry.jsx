@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { KeyRound, ShieldAlert, Eye, EyeOff, Lock, UserCheck } from 'lucide-react';
+import { KeyRound, ShieldAlert, Eye, EyeOff, Lock, UserCheck, Sparkles } from 'lucide-react';
 import Keypad from './Keypad';
 import { playKeyBeep } from '../utils/audio';
 
@@ -14,6 +14,16 @@ export default function ScreenPinEntry({
 }) {
   const [pin, setPin] = useState('');
   const [showPin, setShowPin] = useState(false);
+
+  // Distinct password reference for registered members
+  const memberPins = {
+    '100123': '123456', // Rohit Nadar
+    '100124': '234567', // Vikash
+    '100125': '345678', // Vahini Muthu
+    '100126': '456789'  // Sujith S.
+  };
+
+  const expectedPin = memberPins[cardId];
 
   const handleDigitPress = (d) => {
     if (pin.length < 6) {
@@ -30,6 +40,13 @@ export default function ScreenPinEntry({
       onPinSubmit(pin);
     } else {
       playKeyBeep(350, 0.1);
+    }
+  };
+
+  const handleAutoFill = () => {
+    if (expectedPin) {
+      playKeyBeep(1400, 0.05);
+      setPin(expectedPin);
     }
   };
 
@@ -53,6 +70,27 @@ export default function ScreenPinEntry({
           <span className="text-teal-300 font-medium">{accountHolder}</span>
         </div>
       </div>
+
+      {/* Member-Specific Password Helper Pill */}
+      {expectedPin && (
+        <div className="bg-slate-900/90 border border-amber-500/30 rounded-2xl p-3 flex items-center justify-between text-xs font-mono">
+          <div className="flex items-center space-x-2">
+            <KeyRound className="h-4 w-4 text-amber-400" />
+            <span className="text-slate-300">
+              Registered PIN for {accountHolder?.split(' ')[0]}: <strong className="text-amber-300 font-bold">{expectedPin}</strong>
+            </span>
+          </div>
+
+          <button
+            type="button"
+            onClick={handleAutoFill}
+            className="px-2.5 py-1 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-[11px] font-bold flex items-center space-x-1 transition-colors"
+          >
+            <Sparkles className="h-3 w-3" />
+            <span>Auto-Fill</span>
+          </button>
+        </div>
+      )}
 
       {/* PIN Display Box */}
       <div className="bg-slate-900/90 border border-slate-700/80 rounded-2xl p-5 shadow-2xl relative">
@@ -125,4 +163,3 @@ export default function ScreenPinEntry({
     </div>
   );
 }
-
