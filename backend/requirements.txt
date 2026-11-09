@@ -1,0 +1,10 @@
+fastapi==0.162.2
+uvicorn==0.54.0
+sqlalchemy==2.1.8
+psycopg2-binary==2.9.13
+bcrypt==5.0.0
+reportlab==5.1.0
+pydantic==2.14.3
+python-dotenv==1.2.4
+python-multipart==0.0.20
+
