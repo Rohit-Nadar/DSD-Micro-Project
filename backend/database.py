@@ -21,6 +21,18 @@ DATABASE_URL = os.getenv(
 if DATABASE_URL.startswith("postgres://"):
     DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
 
+# In SQLAlchemy 2.0+, default postgresql:// attempts to load psycopg (v3).
+# If psycopg is not available but psycopg2 is, automatically use postgresql+psycopg2://
+if DATABASE_URL.startswith("postgresql://") and not DATABASE_URL.startswith("postgresql+"):
+    try:
+        import psycopg
+    except ImportError:
+        try:
+            import psycopg2
+            DATABASE_URL = DATABASE_URL.replace("postgresql://", "postgresql+psycopg2://", 1)
+        except ImportError:
+            pass
+
 # SQLite-specific connection arguments
 connect_args = {}
 if DATABASE_URL.startswith("sqlite"):
