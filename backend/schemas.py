@@ -24,7 +24,7 @@ class TransactionRequest(BaseModel):
 class HardwareSimRequest(BaseModel):
     card_id: int = Field(default=100123, description="6-digit Card ID")
     pin: int = Field(default=123456, description="6-digit PIN")
-    tx_type: int = Field(default=0, ge=0, le=4, description="0=Withdraw, 1=Deposit, 2=Balance, 3=Transfer, 4=Interest")
+    tx_type: int = Field(default=0, ge=0, le=7, description="0=Withdraw, 1=Deposit, 2=Balance, 3=Transfer, 4=Interest, 7=Invalid")
     amount: int = Field(default=2000, ge=0, description="Amount in INR")
     target_card_id: int = Field(default=0, description="Target card ID")
 

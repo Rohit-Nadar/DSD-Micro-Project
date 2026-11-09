@@ -101,7 +101,16 @@ export class BrowserVerilogSimulator {
       logCycle(state, 'S_END: Terminating transaction');
       state = 0;
       logCycle(state, 'S_IDLE: Reset');
-      return { success: false, approved: false, cycles, rejectCode: rCode, rejectReason: REJECT_CODES[rCode] };
+      return { 
+        success: false, 
+        approved: false, 
+        cycles, 
+        rejectCode: rCode, 
+        rejectReason: REJECT_CODES[rCode],
+        finalBalance: 0,
+        dailyWithdrawn: 0,
+        accounts: JSON.parse(JSON.stringify(this.accounts))
+      };
     }
 
     curBal = activeAcc.bal;
@@ -117,7 +126,16 @@ export class BrowserVerilogSimulator {
       logCycle(state, 'S_END: Terminating transaction');
       state = 0;
       logCycle(state, 'S_IDLE: Reset');
-      return { success: false, approved: false, cycles, rejectCode: rCode, rejectReason: REJECT_CODES[rCode] };
+      return { 
+        success: false, 
+        approved: false, 
+        cycles, 
+        rejectCode: rCode, 
+        rejectReason: REJECT_CODES[rCode],
+        finalBalance: curBal,
+        dailyWithdrawn: spent,
+        accounts: JSON.parse(JSON.stringify(this.accounts))
+      };
     }
 
     if (activeAcc.pin !== Number(pin)) {
@@ -138,7 +156,16 @@ export class BrowserVerilogSimulator {
       logCycle(state, 'S_END: Terminating transaction');
       state = 0;
       logCycle(state, 'S_IDLE: Reset');
-      return { success: false, approved: false, cycles, rejectCode: rCode, rejectReason: REJECT_CODES[rCode] };
+      return { 
+        success: false, 
+        approved: false, 
+        cycles, 
+        rejectCode: rCode, 
+        rejectReason: REJECT_CODES[rCode],
+        finalBalance: curBal,
+        dailyWithdrawn: spent,
+        accounts: JSON.parse(JSON.stringify(this.accounts))
+      };
     }
 
     // Success authentication
@@ -229,7 +256,16 @@ export class BrowserVerilogSimulator {
       logCycle(state, 'S_END: Terminating');
       state = 0;
       logCycle(state, 'S_IDLE: Reset');
-      return { success: false, approved: false, cycles, rejectCode: rCode, rejectReason: REJECT_CODES[rCode] };
+      return { 
+        success: false, 
+        approved: false, 
+        cycles, 
+        rejectCode: rCode, 
+        rejectReason: REJECT_CODES[rCode],
+        finalBalance: curBal,
+        dailyWithdrawn: spent,
+        accounts: JSON.parse(JSON.stringify(this.accounts))
+      };
     }
 
     if (state === 8) {

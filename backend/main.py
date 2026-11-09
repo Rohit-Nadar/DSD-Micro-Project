@@ -428,6 +428,12 @@ def run_hardware_simulation(req: HardwareSimRequest):
     )
     return result
 
+@app.post("/api/hardware/reset")
+def reset_hardware_engine():
+    """Resets the internal hardware simulation registers to initial state."""
+    hardware_engine.reset()
+    return {"success": True, "message": "Hardware register bank reset to initial state.", "accounts": hardware_engine.accounts}
+
 # ----------------------------------------------------------------------------
 # Admin & Functional Requirements (FR-01 to FR-12) Verification Suite
 # ----------------------------------------------------------------------------

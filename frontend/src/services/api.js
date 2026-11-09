@@ -73,6 +73,7 @@ export const api = {
       target_card_id: Number(targetCardId) || 0
     })
   }),
+  resetHardware: () => request('/api/hardware/reset', { method: 'POST' }),
 
   // Admin & Tests
   getAdminAccounts: () => request('/api/admin/accounts'),
