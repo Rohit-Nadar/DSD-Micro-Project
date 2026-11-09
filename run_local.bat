@@ -19,3 +19,4 @@ echo Both services are now running!
 echo Frontend: http://localhost:3000
 echo Backend Docs: http://127.0.0.1:8000/docs
 echo ============================================================================
+

@@ -257,3 +257,4 @@ ALL HARDWARE SIMULATION TESTS COMPLETED SUCCESSFULLY!
 
 ## 📄 License & Attribution
 Developed for academic presentation and Continuous Internal Examination (CIE) in **25DC205 – Digital System Design for Data Science and Cybersecurity** at **Karunya Institute of Technology and Sciences**. All hardware models, Stateflow state diagrams, and circuit diagrams are copyright of the project authors under academic license.
+

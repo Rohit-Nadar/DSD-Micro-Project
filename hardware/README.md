@@ -36,3 +36,4 @@ vvp atm_bank_sim
 
 ## Simulation in Web Browser / Python
 The web application includes an interactive cycle-accurate hardware simulation tab that executes `atm_bank.v` in real-time, displaying digital logic analyzer waveforms, bus signals, and FSM transition states.
+
