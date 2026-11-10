@@ -2,9 +2,46 @@
 @tailwind components;
 @tailwind utilities;
 
+/* =========================================================
+   Premium Banking – Light / Dark Mode CSS Custom Properties
+   Light Mode: :root   |   Dark Mode: .dark
+   ========================================================= */
+:root {
+  --color-surface:  #FFFFFF;
+  --color-card:     #F8FAFC;
+  --color-card2:    #EFF3F8;
+  --color-text:     #1E2937;
+  --color-muted:    #64748B;
+  --color-primary:  #2563EB;
+  --color-success:  #10B981;
+  --color-error:    #DC2626;
+  --color-border:   #E2E8F0;
+  --color-input:    #F1F5F9;
+  --color-hover:    #E9EFF7;
+}
+
+.dark {
+  --color-surface:  #0F172A;
+  --color-card:     #1E2937;
+  --color-card2:    #0B1120;
+  --color-text:     #F1F5F9;
+  --color-muted:    #94A3B8;
+  --color-primary:  #3B82F6;
+  --color-success:  #22C55E;
+  --color-error:    #EF4444;
+  --color-border:   #1E293B;
+  --color-input:    #0F172A;
+  --color-hover:    #1E293B;
+}
+
 @layer base {
+  html {
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
   body {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: var(--color-surface);
+    color: var(--color-text);
   }
 }
 
@@ -51,15 +88,15 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #0f172a;
+  background: var(--color-surface);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #334155;
+  background: var(--color-border);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #475569;
+  background: var(--color-muted);
 }
 

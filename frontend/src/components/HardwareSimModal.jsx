@@ -409,17 +409,17 @@ export default function HardwareSimModal() {
     <div className="space-y-6 animate-fade-in max-w-6xl mx-auto">
       
       {/* Header & Tabs */}
-      <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 bg-slate-900/90 border border-slate-800 p-5 rounded-3xl shadow-xl">
+      <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 bg-[var(--color-card)] border border-[var(--color-border)] p-5 rounded-3xl shadow-xl transition-colors">
         <div>
           <div className="flex items-center space-x-2.5">
             <div className="h-8 w-8 rounded-xl bg-teal-500/20 border border-teal-500/30 flex items-center justify-center">
-              <Cpu className="h-5 w-5 text-teal-400" />
+              <Cpu className="h-5 w-5 text-teal-500 dark:text-teal-400" />
             </div>
             <div>
-              <h2 className="text-xl font-bold text-white font-['Chakra_Petch'] tracking-wide">
+              <h2 className="text-xl font-bold text-[var(--color-text)] font-['Chakra_Petch'] tracking-wide">
                 Real-Time Verilog Hardware Simulator (atm_bank.v)
               </h2>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-[var(--color-muted)]">
                 Cycle-accurate digital logic simulation with waveform analyzer, 10-state FSM tracker, and ROM/RAM inspector
               </p>
             </div>
@@ -427,13 +427,13 @@ export default function HardwareSimModal() {
         </div>
 
         {/* Tab Switcher */}
-        <div className="flex items-center gap-1.5 bg-slate-950 p-1.5 rounded-2xl border border-slate-800 self-stretch sm:self-auto justify-center">
+        <div className="flex items-center gap-1.5 bg-[var(--color-card2)] p-1.5 rounded-2xl border border-[var(--color-border)] self-stretch sm:self-auto justify-center">
           <button
             onClick={() => setActiveTab('SIM')}
             className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold font-mono transition-all flex items-center space-x-1.5 ${
               activeTab === 'SIM' 
-                ? 'bg-teal-500 text-slate-950 font-bold shadow-md shadow-teal-500/20' 
-                : 'text-slate-400 hover:text-white'
+                ? 'bg-teal-500 text-white dark:text-slate-950 font-bold shadow-md shadow-teal-500/20' 
+                : 'text-[var(--color-muted)] hover:text-[var(--color-text)]'
             }`}
           >
             <Activity className="h-3.5 w-3.5" />
@@ -443,8 +443,8 @@ export default function HardwareSimModal() {
             onClick={() => setActiveTab('CODE')}
             className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold font-mono transition-all flex items-center space-x-1.5 ${
               activeTab === 'CODE' 
-                ? 'bg-teal-500 text-slate-950 font-bold shadow-md shadow-teal-500/20' 
-                : 'text-slate-400 hover:text-white'
+                ? 'bg-teal-500 text-white dark:text-slate-950 font-bold shadow-md shadow-teal-500/20' 
+                : 'text-[var(--color-muted)] hover:text-[var(--color-text)]'
             }`}
           >
             <FileCode className="h-3.5 w-3.5" />
@@ -454,8 +454,8 @@ export default function HardwareSimModal() {
             onClick={() => setActiveTab('TESTBENCH')}
             className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold font-mono transition-all flex items-center space-x-1.5 ${
               activeTab === 'TESTBENCH' 
-                ? 'bg-teal-500 text-slate-950 font-bold shadow-md shadow-teal-500/20' 
-                : 'text-slate-400 hover:text-white'
+                ? 'bg-teal-500 text-white dark:text-slate-950 font-bold shadow-md shadow-teal-500/20' 
+                : 'text-[var(--color-muted)] hover:text-[var(--color-text)]'
             }`}
           >
             <Terminal className="h-3.5 w-3.5" />
@@ -467,15 +467,15 @@ export default function HardwareSimModal() {
       {activeTab === 'SIM' && (
         <>
           {/* Quick 1-Click Verification Test Vectors / Presets */}
-          <div className="bg-slate-900/80 border border-slate-800 p-4 rounded-3xl shadow-xl space-y-2.5">
-            <div className="flex items-center justify-between text-xs font-mono text-slate-400 pb-1.5 border-b border-slate-800">
+          <div className="bg-[var(--color-card)] border border-[var(--color-border)] p-4 rounded-3xl shadow-xl space-y-2.5 transition-colors">
+            <div className="flex items-center justify-between text-xs font-mono text-[var(--color-muted)] pb-1.5 border-b border-[var(--color-border)]">
               <div className="flex items-center space-x-2">
-                <Sparkles className="h-3.5 w-3.5 text-amber-400" />
-                <span className="font-semibold text-slate-300 uppercase tracking-wide">
+                <Sparkles className="h-3.5 w-3.5 text-amber-500 dark:text-amber-400" />
+                <span className="font-semibold text-[var(--color-text)] uppercase tracking-wide">
                   Quick Verification Presets (FR-01 to FR-12 Branches)
                 </span>
               </div>
-              <span className="text-slate-500 text-[11px]">Click any preset to simulate instantly</span>
+              <span className="text-[var(--color-muted)] text-[11px]">Click any preset to simulate instantly</span>
             </div>
 
             <div className="flex flex-wrap gap-2 pt-1">
@@ -484,11 +484,11 @@ export default function HardwareSimModal() {
                   key={p.id}
                   onClick={() => handleApplyPreset(p)}
                   className={`px-3 py-1.5 rounded-xl text-xs font-mono border transition-all flex items-center space-x-1.5 ${p.color} ${
-                    activePreset === p.id ? 'bg-slate-800 ring-2 ring-teal-400/50' : 'bg-slate-950/70'
+                    activePreset === p.id ? 'bg-[var(--color-card2)] ring-2 ring-teal-400/50' : 'bg-[var(--color-card2)]/70'
                   }`}
                 >
                   <span className="font-bold">{p.label}</span>
-                  <span className="text-[10px] px-1.5 py-0.2 rounded bg-slate-900 text-slate-400 border border-slate-750">
+                  <span className="text-[10px] px-1.5 py-0.2 rounded bg-[var(--color-card)] text-[var(--color-muted)] border border-[var(--color-border)]">
                     {p.badge}
                   </span>
                 </button>
@@ -497,23 +497,23 @@ export default function HardwareSimModal() {
           </div>
 
           {/* Section A: Hardware Input Vector Configuration Bar */}
-          <div className="bg-slate-900/90 border border-slate-800 p-5 rounded-3xl shadow-xl space-y-4">
-            <div className="text-xs font-mono uppercase tracking-wider text-teal-400 font-semibold pb-2 border-b border-slate-800 flex items-center justify-between">
+          <div className="bg-[var(--color-card)] border border-[var(--color-border)] p-5 rounded-3xl shadow-xl space-y-4 transition-colors">
+            <div className="text-xs font-mono uppercase tracking-wider text-teal-600 dark:text-teal-400 font-semibold pb-2 border-b border-[var(--color-border)] flex items-center justify-between">
               <div className="flex items-center space-x-2">
                 <Sliders className="h-4 w-4" />
                 <span>Section A: Hardware Input Vector Configuration</span>
               </div>
-              <span className="text-slate-500">Clk Period: 10ns (100MHz) • IEEE 1364-2001</span>
+              <span className="text-[var(--color-muted)]">Clk Period: 10ns (100MHz) • IEEE 1364-2001</span>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5 text-xs font-mono">
               {/* Card ID Selection */}
               <div>
-                <label className="text-slate-400 block mb-1 font-semibold">Card ID [31:0]</label>
+                <label className="text-[var(--color-text)] block mb-1 font-semibold">Card ID [31:0]</label>
                 <select
                   value={cardId}
                   onChange={(e) => handleCardChange(Number(e.target.value))}
-                  className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2.5 text-white outline-none focus:border-teal-400 focus:ring-1 focus:ring-teal-400 font-mono"
+                  className="w-full bg-[var(--color-input)] border border-[var(--color-border)] rounded-xl px-3 py-2.5 text-[var(--color-text)] outline-none focus:border-teal-400 focus:ring-1 focus:ring-teal-400 font-mono"
                 >
                   <option value={100123}>100123 (Rohit • PIN: 123456)</option>
                   <option value={100124}>100124 (Vikash • PIN: 234567)</option>
@@ -525,24 +525,24 @@ export default function HardwareSimModal() {
 
               {/* PIN Input */}
               <div>
-                <label className="text-slate-400 block mb-1 font-semibold">
-                  PIN [31:0] <span className="text-teal-400 font-normal">({memberNames[cardId] ? 'Distinct' : 'Custom'})</span>
+                <label className="text-[var(--color-text)] block mb-1 font-semibold">
+                  PIN [31:0] <span className="text-teal-600 dark:text-teal-400 font-normal">({memberNames[cardId] ? 'Distinct' : 'Custom'})</span>
                 </label>
                 <input
                   type="number"
                   value={pin}
                   onChange={(e) => setPin(Number(e.target.value))}
-                  className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2.5 text-white outline-none focus:border-teal-400 focus:ring-1 focus:ring-teal-400 font-mono"
+                  className="w-full bg-[var(--color-input)] border border-[var(--color-border)] rounded-xl px-3 py-2.5 text-[var(--color-text)] outline-none focus:border-teal-400 focus:ring-1 focus:ring-teal-400 font-mono"
                 />
               </div>
 
               {/* TX Opcode */}
               <div>
-                <label className="text-slate-400 block mb-1 font-semibold">TX Opcode [2:0]</label>
+                <label className="text-[var(--color-text)] block mb-1 font-semibold">TX Opcode [2:0]</label>
                 <select
                   value={txType}
                   onChange={(e) => setTxType(Number(e.target.value))}
-                  className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2.5 text-white outline-none focus:border-teal-400 focus:ring-1 focus:ring-teal-400 font-mono"
+                  className="w-full bg-[var(--color-input)] border border-[var(--color-border)] rounded-xl px-3 py-2.5 text-[var(--color-text)] outline-none focus:border-teal-400 focus:ring-1 focus:ring-teal-400 font-mono"
                 >
                   <option value={0}>000: WITHDRAW</option>
                   <option value={1}>001: DEPOSIT</option>
@@ -555,13 +555,13 @@ export default function HardwareSimModal() {
 
               {/* Amount Input */}
               <div>
-                <label className="text-slate-400 block mb-1 font-semibold">Amount [15:0] (INR)</label>
+                <label className="text-[var(--color-text)] block mb-1 font-semibold">Amount [15:0] (INR)</label>
                 <input
                   type="number"
                   disabled={txType === 2 || txType === 4}
                   value={amount}
                   onChange={(e) => setAmount(Number(e.target.value))}
-                  className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2.5 text-white outline-none focus:border-teal-400 focus:ring-1 focus:ring-teal-400 disabled:opacity-40 font-mono"
+                  className="w-full bg-[var(--color-input)] border border-[var(--color-border)] rounded-xl px-3 py-2.5 text-[var(--color-text)] outline-none focus:border-teal-400 focus:ring-1 focus:ring-teal-400 disabled:opacity-40 font-mono"
                 />
               </div>
 
@@ -569,7 +569,7 @@ export default function HardwareSimModal() {
               <div className="flex items-end space-x-2">
                 <button
                   onClick={() => handleRunSimulation()}
-                  className="flex-1 py-2.5 rounded-xl bg-gradient-to-r from-teal-500 to-cyan-500 hover:from-teal-400 hover:to-cyan-400 text-slate-950 font-bold font-['Chakra_Petch'] uppercase tracking-wider shadow-lg shadow-teal-500/20 transition-all flex items-center justify-center space-x-1.5"
+                  className="flex-1 py-2.5 rounded-xl bg-gradient-to-r from-teal-500 to-cyan-500 hover:from-teal-400 hover:to-cyan-400 text-white dark:text-slate-950 font-bold font-['Chakra_Petch'] uppercase tracking-wider shadow-lg shadow-teal-500/20 transition-all flex items-center justify-center space-x-1.5"
                 >
                   <Zap className="h-4 w-4" />
                   <span>Run Verilog</span>
@@ -578,10 +578,10 @@ export default function HardwareSimModal() {
                 <button
                   onClick={handleResetHardwareRegisters}
                   disabled={isResetting}
-                  className="p-2.5 rounded-xl bg-slate-800 hover:bg-slate-750 text-slate-300 border border-slate-700 hover:border-slate-600 transition-colors"
+                  className="p-2.5 rounded-xl bg-[var(--color-hover)] hover:bg-[var(--color-border)] text-[var(--color-text)] border border-[var(--color-border)] transition-colors"
                   title="Reset Hardware Account Registers & RAM"
                 >
-                  <RefreshCw className={`h-4 w-4 ${isResetting ? 'animate-spin text-teal-400' : ''}`} />
+                  <RefreshCw className={`h-4 w-4 ${isResetting ? 'animate-spin text-teal-500' : ''}`} />
                 </button>
               </div>
             </div>
@@ -650,14 +650,14 @@ export default function HardwareSimModal() {
           )}
 
           {/* Stepper & Playback Controls */}
-          <div className="flex flex-wrap items-center justify-between gap-3 bg-slate-950 border border-slate-800 p-3 rounded-2xl">
+          <div className="flex flex-wrap items-center justify-between gap-3 bg-[var(--color-card2)] border border-[var(--color-border)] p-3 rounded-2xl transition-colors">
             <div className="flex items-center space-x-2">
               <button
                 onClick={() => setAutoRunning(!autoRunning)}
                 className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-xl text-xs font-bold font-mono transition-all ${
                   autoRunning
                     ? 'bg-amber-500 text-slate-950 shadow-md shadow-amber-500/30'
-                    : 'bg-teal-500/20 text-teal-300 border border-teal-500/40 hover:bg-teal-500/30'
+                    : 'bg-teal-500/20 text-teal-600 dark:text-teal-300 border border-teal-500/40 hover:bg-teal-500/30'
                 }`}
               >
                 {autoRunning ? <Pause className="h-3.5 w-3.5" /> : <Play className="h-3.5 w-3.5" />}
@@ -670,7 +670,7 @@ export default function HardwareSimModal() {
                   setCurrentCycleIndex(prev => Math.min((simulationResult?.clock_cycles?.length || 1) - 1, prev + 1));
                 }}
                 disabled={currentCycleIndex >= (simulationResult?.clock_cycles?.length || 1) - 1}
-                className="flex items-center space-x-1 px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-750 disabled:opacity-40 text-slate-200 text-xs font-mono font-semibold transition-colors"
+                className="flex items-center space-x-1 px-3 py-1.5 rounded-xl bg-[var(--color-hover)] hover:bg-[var(--color-border)] disabled:opacity-40 text-[var(--color-text)] text-xs font-mono font-semibold transition-colors"
               >
                 <StepForward className="h-3.5 w-3.5" />
                 <span>Step Clock</span>
@@ -681,25 +681,25 @@ export default function HardwareSimModal() {
                   playKeyBeep(800, 0.04);
                   setCurrentCycleIndex(0);
                 }}
-                className="p-1.5 rounded-xl bg-slate-800 hover:bg-slate-750 text-slate-300 transition-colors"
+                className="p-1.5 rounded-xl bg-[var(--color-hover)] hover:bg-[var(--color-border)] text-[var(--color-text)] transition-colors"
                 title="Reset to Clock Cycle T0"
               >
                 <RotateCcw className="h-4 w-4" />
               </button>
             </div>
 
-            <div className="text-xs font-mono text-slate-400">
-              Active Clock: <strong className="text-teal-400">T{currentCycleIndex}</strong> / T{(simulationResult?.clock_cycles?.length || 1) - 1} • State: <strong className="text-white">{activeCycle?.fsm_state_name || 'S_IDLE'}</strong>
+            <div className="text-xs font-mono text-[var(--color-muted)]">
+              Active Clock: <strong className="text-teal-500 dark:text-teal-400">T{currentCycleIndex}</strong> / T{(simulationResult?.clock_cycles?.length || 1) - 1} • State: <strong className="text-[var(--color-text)]">{activeCycle?.fsm_state_name || 'S_IDLE'}</strong>
             </div>
           </div>
 
           {/* FSM State Machine Visual Node Graph */}
-          <div className="bg-slate-900/90 border border-slate-800 p-4 rounded-3xl shadow-xl space-y-3">
-            <div className="flex items-center justify-between text-xs font-mono text-slate-400 pb-2 border-b border-slate-800">
-              <span className="font-semibold text-slate-300 uppercase">
+          <div className="bg-[var(--color-card)] border border-[var(--color-border)] p-4 rounded-3xl shadow-xl space-y-3 transition-colors">
+            <div className="flex items-center justify-between text-xs font-mono text-[var(--color-muted)] pb-2 border-b border-[var(--color-border)]">
+              <span className="font-semibold text-[var(--color-text)] uppercase">
                 Section C: 10-State Algorithmic Stateflow FSM Transition Graph
               </span>
-              <span className="text-teal-400">
+              <span className="text-teal-500 dark:text-teal-400">
                 Active State: <strong>{activeCycle?.fsm_state_name || 'S_IDLE'}</strong> (Code {activeCycle?.fsm_state_code ?? 0})
               </span>
             </div>
@@ -712,14 +712,14 @@ export default function HardwareSimModal() {
                     key={st.code}
                     className={`p-2.5 rounded-xl border text-center transition-all ${
                       isCurrent
-                        ? 'bg-teal-500/25 border-teal-400 text-teal-300 shadow-lg shadow-teal-500/20 scale-105 glow-teal'
-                        : 'bg-slate-950 border-slate-800 text-slate-500'
+                        ? 'bg-teal-500/25 border-teal-400 text-teal-600 dark:text-teal-300 shadow-lg shadow-teal-500/20 scale-105 glow-teal'
+                        : 'bg-[var(--color-card2)] border-[var(--color-border)] text-[var(--color-muted)]'
                     }`}
                   >
                     <div className="font-mono text-xs font-bold">
                       {st.name}
                     </div>
-                    <div className="text-[10px] text-slate-400 mt-0.5 truncate">
+                    <div className="text-[10px] text-[var(--color-muted)] mt-0.5 truncate">
                       {st.desc}
                     </div>
                   </div>
@@ -729,17 +729,17 @@ export default function HardwareSimModal() {
           </div>
 
           {/* Live Waveform Logic Analyzer View */}
-          <div className="bg-slate-900/90 border border-slate-800 p-4 rounded-3xl shadow-xl space-y-3">
-            <div className="flex items-center justify-between text-xs font-mono text-slate-400 pb-2 border-b border-slate-800">
-              <span className="font-semibold text-slate-300 uppercase">
+          <div className="bg-[var(--color-card)] border border-[var(--color-border)] p-4 rounded-3xl shadow-xl space-y-3 transition-colors">
+            <div className="flex items-center justify-between text-xs font-mono text-[var(--color-muted)] pb-2 border-b border-[var(--color-border)]">
+              <span className="font-semibold text-[var(--color-text)] uppercase">
                 Digital Timing Waveform (Logic Analyzer View)
               </span>
-              <span className="text-xs text-slate-500">
+              <span className="text-xs text-[var(--color-muted)]">
                 Signals: CLK • START_TX • FSM_STATE • REG_WRITE • APPROVED • REJECTED • BALANCE
               </span>
             </div>
 
-            <div className="overflow-x-auto rounded-xl border border-slate-800">
+            <div className="overflow-x-auto rounded-xl border border-[var(--color-border)]">
               <canvas
                 ref={waveformCanvasRef}
                 height={280}
@@ -752,81 +752,81 @@ export default function HardwareSimModal() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             
             {/* Bus Signal Values */}
-            <div className="bg-slate-900/90 border border-slate-800 p-4 rounded-2xl shadow-xl space-y-3">
-              <div className="text-xs font-mono font-bold text-slate-300 uppercase pb-2 border-b border-slate-800 flex items-center justify-between">
+            <div className="bg-[var(--color-card)] border border-[var(--color-border)] p-4 rounded-2xl shadow-xl space-y-3 transition-colors">
+              <div className="text-xs font-mono font-bold text-[var(--color-text)] uppercase pb-2 border-b border-[var(--color-border)] flex items-center justify-between">
                 <span>Cycle T{currentCycleIndex} Internal Hardware Signals</span>
-                <span className="text-teal-400 text-[11px] font-normal">Section D & E ALU Buses</span>
+                <span className="text-teal-500 dark:text-teal-400 text-[11px] font-normal">Section D & E ALU Buses</span>
               </div>
               <div className="space-y-1.5 text-xs font-mono">
-                <div className="flex justify-between p-2 rounded-lg bg-slate-950">
-                  <span className="text-slate-400">fsm_state [3:0]:</span>
-                  <span className="text-teal-400 font-bold">{activeCycle?.fsm_state_name} (0x{activeCycle?.fsm_state_code?.toString(16)})</span>
+                <div className="flex justify-between p-2 rounded-lg bg-[var(--color-card2)]">
+                  <span className="text-[var(--color-muted)]">fsm_state [3:0]:</span>
+                  <span className="text-teal-500 dark:text-teal-400 font-bold">{activeCycle?.fsm_state_name} (0x{activeCycle?.fsm_state_code?.toString(16)})</span>
                 </div>
-                <div className="flex justify-between p-2 rounded-lg bg-slate-950">
-                  <span className="text-slate-400">current_balance [15:0]:</span>
-                  <span className="text-emerald-400 font-bold">{formatCurrency(activeCycle?.current_balance)}</span>
+                <div className="flex justify-between p-2 rounded-lg bg-[var(--color-card2)]">
+                  <span className="text-[var(--color-muted)]">current_balance [15:0]:</span>
+                  <span className="text-emerald-500 dark:text-emerald-400 font-bold">{formatCurrency(activeCycle?.current_balance)}</span>
                 </div>
-                <div className="flex justify-between p-2 rounded-lg bg-slate-950">
-                  <span className="text-slate-400">register_write flag:</span>
-                  <span className={activeCycle?.register_write ? "text-emerald-400 font-bold" : "text-slate-500"}>
+                <div className="flex justify-between p-2 rounded-lg bg-[var(--color-card2)]">
+                  <span className="text-[var(--color-muted)]">register_write flag:</span>
+                  <span className={activeCycle?.register_write ? "text-emerald-500 dark:text-emerald-400 font-bold" : "text-[var(--color-muted)]"}>
                     {activeCycle?.register_write ? "1'b1 (LATCH ENABLED)" : "1'b0 (HOLD STATE)"}
                   </span>
                 </div>
-                <div className="flex justify-between p-2 rounded-lg bg-slate-950">
-                  <span className="text-slate-400">approved / rejected:</span>
+                <div className="flex justify-between p-2 rounded-lg bg-[var(--color-card2)]">
+                  <span className="text-[var(--color-muted)]">approved / rejected:</span>
                   <span>
                     {activeCycle?.approved ? (
-                      <span className="text-emerald-400 font-bold">APPROVED = 1</span>
+                      <span className="text-emerald-500 dark:text-emerald-400 font-bold">APPROVED = 1</span>
                     ) : activeCycle?.rejected ? (
-                      <span className="text-rose-400 font-bold">REJECTED = 1 (Code {activeCycle?.reject_code})</span>
+                      <span className="text-rose-500 dark:text-rose-400 font-bold">REJECTED = 1 (Code {activeCycle?.reject_code})</span>
                     ) : (
-                      <span className="text-slate-500">PENDING</span>
+                      <span className="text-[var(--color-muted)]">PENDING</span>
                     )}
                   </span>
                 </div>
-                <div className="p-2.5 rounded-lg bg-slate-950 text-slate-300 text-[11px] border border-slate-850">
-                  <strong className="text-teal-400">Hardware Step: </strong> {activeCycle?.comment || 'Idle state'}
+                <div className="p-2.5 rounded-lg bg-[var(--color-card2)] text-[var(--color-text)] text-[11px] border border-[var(--color-border)]">
+                  <strong className="text-teal-500 dark:text-teal-400">Hardware Step: </strong> {activeCycle?.comment || 'Idle state'}
                 </div>
               </div>
             </div>
 
             {/* Account Bank Register Memory Snapshot */}
-            <div className="bg-slate-900/90 border border-slate-800 p-4 rounded-2xl shadow-xl space-y-3">
-              <div className="text-xs font-mono font-bold text-slate-300 uppercase pb-2 border-b border-slate-800 flex items-center justify-between">
+            <div className="bg-[var(--color-card)] border border-[var(--color-border)] p-4 rounded-2xl shadow-xl space-y-3 transition-colors">
+              <div className="text-xs font-mono font-bold text-[var(--color-text)] uppercase pb-2 border-b border-[var(--color-border)] flex items-center justify-between">
                 <div className="flex items-center space-x-1.5">
-                  <Database className="h-3.5 w-3.5 text-teal-400" />
+                  <Database className="h-3.5 w-3.5 text-teal-500 dark:text-teal-400" />
                   <span>Hardware Account Register Bank (ROM/RAM)</span>
                 </div>
                 <button
                   onClick={handleResetHardwareRegisters}
-                  className="text-[10px] text-teal-400 hover:text-teal-300 underline font-mono"
+                  className="text-[10px] text-teal-500 dark:text-teal-400 hover:text-teal-600 underline font-mono"
                 >
                   Reset Registers
                 </button>
               </div>
               <div className="space-y-2 text-xs font-mono">
                 {(simulationResult?.accounts_snapshot || browserSimulator.accounts).map((acc) => (
-                  <div key={acc.card} className="p-2.5 rounded-xl bg-slate-950 border border-slate-850 flex items-center justify-between">
+                  <div key={acc.card} className="p-2.5 rounded-xl bg-[var(--color-card2)] border border-[var(--color-border)] flex items-center justify-between">
                     <div>
-                      <div className="font-bold text-white flex items-center gap-1.5">
+                      <div className="font-bold text-[var(--color-text)] flex items-center gap-1.5">
                         <span>{acc.name || memberNames[acc.card] || `Card ${acc.card}`}</span>
                         {cardId === acc.card && (
-                          <span className="text-[9px] px-1.5 py-0.2 rounded bg-teal-500/20 text-teal-300 border border-teal-500/40">
+                          <span className="text-[9px] px-1.5 py-0.2 rounded bg-teal-500/20 text-teal-600 dark:text-teal-300 border border-teal-500/40">
                             ACTIVE
                           </span>
                         )}
                       </div>
-                      <div className="text-slate-400 text-[11px] mt-0.5">
-                        Card: <strong className="text-slate-200">{acc.card}</strong> • PIN: <strong className="text-amber-300">{acc.pin || memberPins[acc.card]}</strong>
+                      <div className="text-[var(--color-muted)] text-[11px] mt-0.5">
+                        Card: <strong className="text-[var(--color-text)]">{acc.card}</strong> • PIN: <strong className="text-amber-500 dark:text-amber-300">{acc.pin || memberPins[acc.card]}</strong>
                       </div>
                     </div>
                     <div className="text-right">
-                      <div className="text-teal-400 font-bold">{formatCurrency(acc.bal)}</div>
+                      <div className="text-teal-500 dark:text-teal-400 font-bold">{formatCurrency(acc.bal)}</div>
                       <div className="text-[10px] mt-0.5">
                         {acc.locked ? (
-                          <span className="text-rose-400 font-bold">LOCKED (3 fails)</span>
+                          <span className="text-rose-500 dark:text-rose-400 font-bold">LOCKED (3 fails)</span>
                         ) : (
-                          <span className="text-slate-500">Fails: {acc.attempts || 0}/3</span>
+                          <span className="text-[var(--color-muted)]">Fails: {acc.attempts || 0}/3</span>
                         )}
                       </div>
                     </div>
@@ -841,23 +841,23 @@ export default function HardwareSimModal() {
 
       {/* Tab 2: Verilog Source Code (atm_bank.v) */}
       {activeTab === 'CODE' && (
-        <div className="bg-slate-950 border border-slate-800 rounded-3xl p-5 shadow-2xl space-y-3 font-mono">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 pb-3 border-b border-slate-800">
-            <div className="flex items-center space-x-2 text-xs text-slate-400">
-              <FileCode className="h-4 w-4 text-teal-400" />
-              <span className="font-bold text-white">hardware/atm_bank.v</span>
+        <div className="bg-[var(--color-card)] border border-[var(--color-border)] rounded-3xl p-5 shadow-2xl space-y-3 font-mono transition-colors">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 pb-3 border-b border-[var(--color-border)]">
+            <div className="flex items-center space-x-2 text-xs text-[var(--color-muted)]">
+              <FileCode className="h-4 w-4 text-teal-500 dark:text-teal-400" />
+              <span className="font-bold text-[var(--color-text)]">hardware/atm_bank.v</span>
               <span>(Synthesizable IEEE 1364-2001 Verilog RTL • 378 Lines)</span>
             </div>
             <button
               onClick={() => handleCopyCode(ATM_BANK_VERILOG, 'RTL')}
-              className="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-750 text-slate-200 text-xs transition-colors"
+              className="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-[var(--color-hover)] hover:bg-[var(--color-border)] text-[var(--color-text)] text-xs transition-colors"
             >
-              {isCopied && copiedType === 'RTL' ? <Check className="h-3.5 w-3.5 text-emerald-400" /> : <Copy className="h-3.5 w-3.5" />}
+              {isCopied && copiedType === 'RTL' ? <Check className="h-3.5 w-3.5 text-emerald-500" /> : <Copy className="h-3.5 w-3.5" />}
               <span>{isCopied && copiedType === 'RTL' ? 'Copied!' : 'Copy atm_bank.v'}</span>
             </button>
           </div>
 
-          <pre className="text-xs text-emerald-400 overflow-x-auto p-4 bg-slate-900/60 rounded-2xl max-h-[560px] leading-relaxed">
+          <pre className="text-xs text-emerald-600 dark:text-emerald-400 overflow-x-auto p-4 bg-slate-900 rounded-2xl max-h-[560px] leading-relaxed">
             {ATM_BANK_VERILOG}
           </pre>
         </div>
@@ -865,30 +865,30 @@ export default function HardwareSimModal() {
 
       {/* Tab 3: Testbench Source Code (atm_bank_tb.v) */}
       {activeTab === 'TESTBENCH' && (
-        <div className="bg-slate-950 border border-slate-800 rounded-3xl p-5 shadow-2xl space-y-3 font-mono">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 pb-3 border-b border-slate-800">
-            <div className="flex items-center space-x-2 text-xs text-slate-400">
-              <Terminal className="h-4 w-4 text-purple-400" />
-              <span className="font-bold text-white">hardware/atm_bank_tb.v</span>
+        <div className="bg-[var(--color-card)] border border-[var(--color-border)] rounded-3xl p-5 shadow-2xl space-y-3 font-mono transition-colors">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 pb-3 border-b border-[var(--color-border)]">
+            <div className="flex items-center space-x-2 text-xs text-[var(--color-muted)]">
+              <Terminal className="h-4 w-4 text-purple-500 dark:text-purple-400" />
+              <span className="font-bold text-[var(--color-text)]">hardware/atm_bank_tb.v</span>
               <span>(Verification Testbench Covering Tests 1 to 7 • 192 Lines)</span>
             </div>
             <button
               onClick={() => handleCopyCode(ATM_BANK_TESTBENCH, 'TB')}
-              className="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-750 text-slate-200 text-xs transition-colors"
+              className="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-[var(--color-hover)] hover:bg-[var(--color-border)] text-[var(--color-text)] text-xs transition-colors"
             >
               {isCopied && copiedType === 'TB' ? <Check className="h-3.5 w-3.5 text-purple-400" /> : <Copy className="h-3.5 w-3.5" />}
               <span>{isCopied && copiedType === 'TB' ? 'Copied!' : 'Copy atm_bank_tb.v'}</span>
             </button>
           </div>
 
-          <div className="p-3 bg-slate-900/90 border border-slate-800 rounded-xl text-xs text-slate-300">
+          <div className="p-3 bg-[var(--color-card2)] border border-[var(--color-border)] rounded-xl text-xs text-[var(--color-text)]">
             <strong>Terminal Compilation & Simulation Command:</strong>
-            <code className="block mt-1 px-2.5 py-1.5 bg-slate-950 rounded-lg text-teal-300">
+            <code className="block mt-1 px-2.5 py-1.5 bg-slate-950 text-teal-300 rounded-lg">
               iverilog -o atm_bank_sim hardware/atm_bank.v hardware/atm_bank_tb.v && vvp atm_bank_sim
             </code>
           </div>
 
-          <pre className="text-xs text-purple-300 overflow-x-auto p-4 bg-slate-900/60 rounded-2xl max-h-[500px] leading-relaxed">
+          <pre className="text-xs text-purple-600 dark:text-purple-300 overflow-x-auto p-4 bg-slate-900 rounded-2xl max-h-[500px] leading-relaxed">
             {ATM_BANK_TESTBENCH}
           </pre>
         </div>

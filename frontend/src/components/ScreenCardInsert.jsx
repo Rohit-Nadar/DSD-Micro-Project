@@ -32,23 +32,23 @@ export default function ScreenCardInsert({ onCardVerified, errorMsg, isLoading }
           <CreditCard className="h-3.5 w-3.5" />
           <span>Section A & B: Registered Data & Identification (FR-01)</span>
         </div>
-        <h2 className="text-2xl font-bold text-white font-['Chakra_Petch'] tracking-wide">
+        <h2 className="text-2xl font-bold text-[var(--color-text)] font-['Chakra_Petch'] tracking-wide">
           INSERT YOUR ATM CARD
         </h2>
-        <p className="text-sm text-slate-400">
+        <p className="text-sm text-[var(--color-muted)]">
           Enter your 6-digit Card ID or select any registered member below
         </p>
       </div>
 
       {/* Card Input & Slot Animation */}
-      <div className="bg-slate-900/80 border border-slate-700/80 rounded-2xl p-6 shadow-xl relative overflow-hidden">
+      <div className="bg-[var(--color-card)]/90 border border-[var(--color-border)] rounded-2xl p-6 shadow-xl relative overflow-hidden transition-colors">
         {/* Animated Card Slot Indicator */}
-        <div className="flex items-center justify-between mb-4 pb-3 border-b border-slate-800">
+        <div className="flex items-center justify-between mb-4 pb-3 border-b border-[var(--color-border)]">
           <div className="flex items-center space-x-2">
             <span className="h-2.5 w-2.5 rounded-full bg-teal-400 animate-ping" />
-            <span className="text-xs uppercase font-mono text-slate-400">Card Reader Port [31:0]</span>
+            <span className="text-xs uppercase font-mono text-[var(--color-muted)]">Card Reader Port [31:0]</span>
           </div>
-          <span className="text-xs text-slate-500 font-mono">Format: 6-Digit BCD</span>
+          <span className="text-xs text-[var(--color-muted)] font-mono">Format: 6-Digit BCD</span>
         </div>
 
         <div className="flex flex-col sm:flex-row gap-3">
@@ -59,7 +59,7 @@ export default function ScreenCardInsert({ onCardVerified, errorMsg, isLoading }
               value={cardInput}
               onChange={(e) => setCardInput(e.target.value.replace(/\D/g, ''))}
               placeholder="Enter 6-digit Card ID (e.g. 100123)"
-              className="w-full bg-slate-950 border border-slate-700 focus:border-teal-400 focus:ring-2 focus:ring-teal-500/20 rounded-xl px-4 py-3.5 text-lg font-mono tracking-widest text-white placeholder-slate-600 outline-none transition-all"
+              className="w-full bg-[var(--color-input)] border border-[var(--color-border)] focus:border-teal-400 focus:ring-2 focus:ring-teal-500/20 rounded-xl px-4 py-3.5 text-lg font-mono tracking-widest text-[var(--color-text)] placeholder-[var(--color-muted)] outline-none transition-all"
             />
             {cardInput.length === 6 && (
               <span className="absolute right-3 top-3.5 text-teal-400">
@@ -108,7 +108,7 @@ export default function ScreenCardInsert({ onCardVerified, errorMsg, isLoading }
               className={`p-3.5 rounded-2xl border cursor-pointer transition-all flex items-center justify-between group ${
                 selectedDemo === acc.card
                   ? 'bg-teal-500/15 border-teal-500/60 shadow-md shadow-teal-500/10'
-                  : 'bg-slate-900/70 hover:bg-slate-850 border-slate-800 hover:border-slate-700'
+                  : 'bg-[var(--color-card)]/80 hover:bg-[var(--color-hover)] border-[var(--color-border)] hover:border-teal-500/40'
               }`}
             >
               <div className="flex items-center space-x-3">
@@ -116,10 +116,10 @@ export default function ScreenCardInsert({ onCardVerified, errorMsg, isLoading }
                   <CreditCard className="h-5 w-5 text-teal-400" />
                 </div>
                 <div>
-                  <div className="font-semibold text-sm text-white group-hover:text-teal-300 transition-colors">
+                  <div className="font-semibold text-sm text-[var(--color-text)] group-hover:text-teal-300 transition-colors">
                     {acc.name}
                   </div>
-                  <div className="text-xs text-slate-400 font-mono flex items-center gap-2 mt-0.5">
+                  <div className="text-xs text-[var(--color-muted)] font-mono flex items-center gap-2 mt-0.5">
                     <span>Card: <strong className="text-teal-400">{acc.card}</strong></span>
                     <span>•</span>
                     <span className="flex items-center text-amber-300">

@@ -217,13 +217,13 @@ export default function AtmKiosk({ onResetTriggered }) {
     <div className="max-w-4xl mx-auto space-y-6">
       
       {/* ATM Exterior Kiosk Bezel & Chassis */}
-      <div className="bg-gradient-to-b from-slate-900 via-slate-850 to-slate-950 border-4 border-slate-750 rounded-[2.5rem] p-4 sm:p-8 shadow-2xl relative overflow-hidden">
+      <div className="bg-gradient-to-b from-[var(--color-card)] via-[var(--color-card)] to-[var(--color-card2)] border-4 border-[var(--color-border)] rounded-[2.5rem] p-4 sm:p-8 shadow-2xl relative overflow-hidden transition-colors duration-300">
         
         {/* Top Header Canopy */}
-        <div className="flex items-center justify-between pb-4 mb-4 border-b border-slate-800">
+        <div className="flex items-center justify-between pb-4 mb-4 border-b border-[var(--color-border)] transition-colors">
           <div className="flex items-center space-x-3">
             <div className="h-3 w-3 rounded-full bg-emerald-400 animate-pulse shadow-md shadow-emerald-400/50" />
-            <span className="font-['Chakra_Petch'] font-bold text-sm text-slate-300 tracking-wider">
+            <span className="font-['Chakra_Petch'] font-bold text-sm text-[var(--color-text)] tracking-wider">
               ATM TERMINAL #01 • KARUNYA DIGITAL DSD
             </span>
           </div>
@@ -237,7 +237,7 @@ export default function AtmKiosk({ onResetTriggered }) {
         </div>
 
         {/* Inner Screen Display (Curved ATM Monitor) */}
-        <div className="bg-slate-950 border-2 border-slate-800 rounded-3xl p-5 sm:p-7 shadow-inner relative min-h-[460px] flex flex-col justify-center">
+        <div className="bg-[var(--color-card2)] border-2 border-[var(--color-border)] rounded-3xl p-5 sm:p-7 shadow-inner relative min-h-[460px] flex flex-col justify-center transition-colors duration-300">
           
           {atmState === 'CARD_INSERT' && (
             <ScreenCardInsert
@@ -289,7 +289,7 @@ export default function AtmKiosk({ onResetTriggered }) {
         </div>
 
         {/* Lower Kiosk Features: Card Slot LED & Thermal Dispenser Slot */}
-        <div className="mt-6 pt-5 border-t border-slate-850 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-500">
+        <div className="mt-6 pt-5 border-t border-[var(--color-border)] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[var(--color-muted)] transition-colors">
           <div className="flex items-center space-x-3">
             <div className="h-4 w-28 bg-slate-950 border border-slate-800 rounded-full flex items-center justify-center relative overflow-hidden">
               <span className={`h-1.5 w-8 rounded-full ${

@@ -60,7 +60,7 @@ export default function ScreenPinEntry({
           <KeyRound className="h-3.5 w-3.5" />
           <span>Section B: 32-bit Equality Comparator PIN Authentication (FR-02 & FR-03)</span>
         </div>
-        <h2 className="text-2xl font-bold text-white font-['Chakra_Petch'] tracking-wide">
+        <h2 className="text-2xl font-bold text-[var(--color-text)] font-['Chakra_Petch'] tracking-wide">
           ENTER YOUR 6-DIGIT PIN
         </h2>
         <div className="flex items-center justify-center space-x-2 text-sm text-slate-400">
@@ -73,10 +73,10 @@ export default function ScreenPinEntry({
 
       {/* Member-Specific Password Helper Pill */}
       {expectedPin && (
-        <div className="bg-slate-900/90 border border-amber-500/30 rounded-2xl p-3 flex items-center justify-between text-xs font-mono">
+        <div className="bg-[var(--color-card)]/90 border border-amber-500/30 rounded-2xl p-3 flex items-center justify-between text-xs font-mono transition-colors">
           <div className="flex items-center space-x-2">
             <KeyRound className="h-4 w-4 text-amber-400" />
-            <span className="text-slate-300">
+            <span className="text-[var(--color-muted)]">
               Registered PIN for {accountHolder?.split(' ')[0]}: <strong className="text-amber-300 font-bold">{expectedPin}</strong>
             </span>
           </div>
@@ -93,8 +93,8 @@ export default function ScreenPinEntry({
       )}
 
       {/* PIN Display Box */}
-      <div className="bg-slate-900/90 border border-slate-700/80 rounded-2xl p-5 shadow-2xl relative">
-        <div className="flex items-center justify-between mb-3 text-xs text-slate-400 font-mono">
+      <div className="bg-[var(--color-card)]/90 border border-[var(--color-border)] rounded-2xl p-5 shadow-2xl relative transition-colors">
+        <div className="flex items-center justify-between mb-3 text-xs text-[var(--color-muted)] font-mono">
           <span>Security Input [31:0]</span>
           <div className="flex items-center space-x-2">
             <span className={`px-2 py-0.5 rounded text-[11px] font-semibold border ${
@@ -127,7 +127,7 @@ export default function ScreenPinEntry({
                 className={`h-12 w-12 rounded-xl flex items-center justify-center font-mono text-2xl font-bold transition-all ${
                   hasChar
                     ? 'bg-teal-500/20 border-2 border-teal-400 text-teal-300 shadow-lg shadow-teal-500/20 scale-105'
-                    : 'bg-slate-950 border border-slate-700 text-slate-600'
+                    : 'bg-[var(--color-card2)] border border-[var(--color-border)] text-[var(--color-muted)]'
                 }`}
               >
                 {hasChar ? (showPin ? char : '●') : ''}

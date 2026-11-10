@@ -114,15 +114,15 @@ export default function AdminTestPanel() {
     <div className="space-y-6 animate-fade-in">
       
       {/* Top Banner */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 bg-slate-900/90 border border-slate-800 p-5 rounded-3xl">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 bg-[var(--color-card)] border border-[var(--color-border)] p-5 rounded-3xl transition-colors">
         <div>
           <div className="flex items-center space-x-2">
-            <ShieldCheck className="h-6 w-6 text-teal-400" />
-            <h2 className="text-xl font-bold text-white font-['Chakra_Petch']">
+            <ShieldCheck className="h-6 w-6 text-teal-500 dark:text-teal-400" />
+            <h2 className="text-xl font-bold text-[var(--color-text)] font-['Chakra_Petch']">
               Functional Requirements Verification Suite (FR-01 to FR-12)
             </h2>
           </div>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-[var(--color-muted)] mt-1">
             Automated test harness validating all banking requirements, comparators, arithmetic units, and security rules
           </p>
         </div>
@@ -130,7 +130,7 @@ export default function AdminTestPanel() {
         <button
           onClick={handleRunAllTests}
           disabled={isLoading}
-          className="flex items-center space-x-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-teal-500 to-cyan-500 hover:from-teal-400 hover:to-cyan-400 text-slate-950 font-bold uppercase tracking-wider font-['Chakra_Petch'] text-xs shadow-lg shadow-teal-500/20 transition-all disabled:opacity-50"
+          className="flex items-center space-x-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-teal-500 to-cyan-500 hover:from-teal-400 hover:to-cyan-400 text-white dark:text-slate-950 font-bold uppercase tracking-wider font-['Chakra_Petch'] text-xs shadow-lg shadow-teal-500/20 transition-all disabled:opacity-50"
         >
           <Play className="h-4 w-4" />
           <span>{isLoading ? 'Running Suite...' : 'Run All 12 Tests'}</span>
@@ -139,39 +139,39 @@ export default function AdminTestPanel() {
 
       {/* Action Notification */}
       {actionMsg && (
-        <div className="p-3 rounded-2xl bg-teal-500/10 border border-teal-500/30 text-teal-300 text-xs font-mono flex items-center space-x-2 animate-fade-in">
-          <ShieldCheck className="h-4 w-4 text-teal-400" />
+        <div className="p-3 rounded-2xl bg-teal-500/10 border border-teal-500/30 text-teal-600 dark:text-teal-300 text-xs font-mono flex items-center space-x-2 animate-fade-in">
+          <ShieldCheck className="h-4 w-4 text-teal-500 dark:text-teal-400" />
           <span>{actionMsg}</span>
         </div>
       )}
 
       {/* Test Score Summary Card */}
       {testResults && (
-        <div className="bg-gradient-to-br from-slate-900 via-slate-850 to-slate-900 border border-slate-800 rounded-3xl p-6 shadow-xl grid grid-cols-2 sm:grid-cols-4 gap-4">
+        <div className="bg-[var(--color-card)] border border-[var(--color-border)] rounded-3xl p-6 shadow-xl grid grid-cols-2 sm:grid-cols-4 gap-4 transition-colors">
           <div>
-            <span className="text-xs text-slate-400 font-mono uppercase block">Total Requirements</span>
-            <span className="text-3xl font-black text-white font-['Chakra_Petch']">
+            <span className="text-xs text-[var(--color-muted)] font-mono uppercase block">Total Requirements</span>
+            <span className="text-3xl font-black text-[var(--color-text)] font-['Chakra_Petch']">
               {testResults.total_requirements}
             </span>
           </div>
 
           <div>
-            <span className="text-xs text-slate-400 font-mono uppercase block">Passed Tests</span>
-            <span className="text-3xl font-black text-emerald-400 font-['Chakra_Petch']">
+            <span className="text-xs text-[var(--color-muted)] font-mono uppercase block">Passed Tests</span>
+            <span className="text-3xl font-black text-emerald-500 dark:text-emerald-400 font-['Chakra_Petch']">
               {testResults.passed_requirements}
             </span>
           </div>
 
           <div>
-            <span className="text-xs text-slate-400 font-mono uppercase block">Failed Tests</span>
-            <span className="text-3xl font-black text-slate-400 font-['Chakra_Petch']">
+            <span className="text-xs text-[var(--color-muted)] font-mono uppercase block">Failed Tests</span>
+            <span className="text-3xl font-black text-[var(--color-muted)] font-['Chakra_Petch']">
               {testResults.failed_requirements}
             </span>
           </div>
 
           <div>
-            <span className="text-xs text-slate-400 font-mono uppercase block">Compliance Score</span>
-            <span className="text-3xl font-black text-teal-400 font-['Chakra_Petch']">
+            <span className="text-xs text-[var(--color-muted)] font-mono uppercase block">Compliance Score</span>
+            <span className="text-3xl font-black text-teal-500 dark:text-teal-400 font-['Chakra_Petch']">
               {testResults.compliance_score}
             </span>
           </div>
@@ -180,18 +180,18 @@ export default function AdminTestPanel() {
 
       {/* Requirements Test Table */}
       {testResults?.tests && (
-        <div className="bg-slate-900/90 border border-slate-800 rounded-3xl p-5 shadow-xl space-y-3">
-          <div className="flex items-center justify-between pb-3 border-b border-slate-800 text-xs font-mono">
-            <span className="font-bold text-slate-200 uppercase">
+        <div className="bg-[var(--color-card)] border border-[var(--color-border)] rounded-3xl p-5 shadow-xl space-y-3 transition-colors">
+          <div className="flex items-center justify-between pb-3 border-b border-[var(--color-border)] text-xs font-mono">
+            <span className="font-bold text-[var(--color-text)] uppercase">
               Specification Matrix & Test Outcomes
             </span>
-            <span className="text-emerald-400 font-bold">100% PASSED</span>
+            <span className="text-emerald-500 dark:text-emerald-400 font-bold">100% PASSED</span>
           </div>
 
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs font-mono">
               <thead>
-                <tr className="text-slate-400 border-b border-slate-800 pb-2">
+                <tr className="text-[var(--color-muted)] border-b border-[var(--color-border)] pb-2">
                   <th className="py-2.5 px-3">Req ID</th>
                   <th className="py-2.5 px-3">Requirement Title</th>
                   <th className="py-2.5 px-3">Circuit Section</th>
@@ -199,22 +199,22 @@ export default function AdminTestPanel() {
                   <th className="py-2.5 px-3">Verification Detail</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-800/60">
+              <tbody className="divide-y divide-[var(--color-border)]">
                 {testResults.tests.map((t) => (
-                  <tr key={t.id} className="hover:bg-slate-850/60 transition-colors">
-                    <td className="py-3 px-3 font-bold text-teal-400">{t.id}</td>
-                    <td className="py-3 px-3 font-semibold text-white">{t.title}</td>
-                    <td className="py-3 px-3 text-slate-400">
-                      <span className="px-2 py-0.5 rounded bg-slate-800 text-[10px] text-teal-300 border border-slate-700">
+                  <tr key={t.id} className="hover:bg-[var(--color-hover)] transition-colors">
+                    <td className="py-3 px-3 font-bold text-teal-500 dark:text-teal-400">{t.id}</td>
+                    <td className="py-3 px-3 font-semibold text-[var(--color-text)]">{t.title}</td>
+                    <td className="py-3 px-3 text-[var(--color-muted)]">
+                      <span className="px-2 py-0.5 rounded bg-[var(--color-card2)] text-[10px] text-teal-600 dark:text-teal-300 border border-[var(--color-border)]">
                         {t.circuit_section}
                       </span>
                     </td>
                     <td className="py-3 px-3">
-                      <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
+                      <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/15 text-emerald-500 dark:text-emerald-400 border border-emerald-500/30">
                         <CheckCircle2 className="h-3 w-3 mr-1" /> PASS
                       </span>
                     </td>
-                    <td className="py-3 px-3 text-slate-400 text-[11px]">{t.details}</td>
+                    <td className="py-3 px-3 text-[var(--color-muted)] text-[11px]">{t.details}</td>
                   </tr>
                 ))}
               </tbody>
@@ -224,11 +224,11 @@ export default function AdminTestPanel() {
       )}
 
       {/* Account Database Management (Neon PostgreSQL) */}
-      <div className="bg-slate-900/90 border border-slate-800 rounded-3xl p-5 shadow-xl space-y-4">
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 pb-3 border-b border-slate-800">
+      <div className="bg-[var(--color-card)] border border-[var(--color-border)] rounded-3xl p-5 shadow-xl space-y-4 transition-colors">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 pb-3 border-b border-[var(--color-border)]">
           <div className="flex items-center space-x-2">
-            <Database className="h-4 w-4 text-teal-400" />
-            <h3 className="font-bold text-sm text-white uppercase font-mono tracking-wider">
+            <Database className="h-4 w-4 text-teal-500 dark:text-teal-400" />
+            <h3 className="font-bold text-sm text-[var(--color-text)] uppercase font-mono tracking-wider">
               Neon PostgreSQL Database & Registered Accounts (accounts table)
             </h3>
           </div>
@@ -236,17 +236,17 @@ export default function AdminTestPanel() {
           <div className="flex items-center space-x-2">
             <button
               onClick={handleResetDaily}
-              className="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-750 text-slate-300 text-xs font-mono font-semibold transition-colors"
+              className="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-[var(--color-hover)] hover:bg-[var(--color-border)] text-[var(--color-text)] text-xs font-mono font-semibold transition-colors"
             >
-              <Calendar className="h-3.5 w-3.5 text-amber-400" />
+              <Calendar className="h-3.5 w-3.5 text-amber-500 dark:text-amber-400" />
               <span>Reset Daily Limits</span>
             </button>
 
             <button
               onClick={handleResetDemo}
-              className="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-750 text-slate-300 text-xs font-mono font-semibold transition-colors"
+              className="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-[var(--color-hover)] hover:bg-[var(--color-border)] text-[var(--color-text)] text-xs font-mono font-semibold transition-colors"
             >
-              <RotateCcw className="h-3.5 w-3.5 text-teal-400" />
+              <RotateCcw className="h-3.5 w-3.5 text-teal-500 dark:text-teal-400" />
               <span>Reset DB to Factory</span>
             </button>
           </div>
@@ -255,7 +255,7 @@ export default function AdminTestPanel() {
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs font-mono">
             <thead>
-              <tr className="text-slate-400 border-b border-slate-800 pb-2">
+              <tr className="text-[var(--color-muted)] border-b border-[var(--color-border)] pb-2">
                 <th className="py-2 px-3">Card ID</th>
                 <th className="py-2 px-3">Account Holder</th>
                 <th className="py-2 px-3">Balance</th>
@@ -265,21 +265,21 @@ export default function AdminTestPanel() {
                 <th className="py-2 px-3 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/60">
+            <tbody className="divide-y divide-[var(--color-border)]">
               {accounts.map((acc) => (
-                <tr key={acc.card_id} className="hover:bg-slate-850/60 transition-colors">
-                  <td className="py-2.5 px-3 font-bold text-white">{acc.card_id}</td>
-                  <td className="py-2.5 px-3 text-slate-300">{acc.account_holder}</td>
-                  <td className="py-2.5 px-3 text-emerald-400 font-bold">{formatCurrency(acc.balance)}</td>
-                  <td className="py-2.5 px-3 text-slate-400">
+                <tr key={acc.card_id} className="hover:bg-[var(--color-hover)] transition-colors">
+                  <td className="py-2.5 px-3 font-bold text-[var(--color-text)]">{acc.card_id}</td>
+                  <td className="py-2.5 px-3 text-[var(--color-text)]">{acc.account_holder}</td>
+                  <td className="py-2.5 px-3 text-emerald-500 dark:text-emerald-400 font-bold">{formatCurrency(acc.balance)}</td>
+                  <td className="py-2.5 px-3 text-[var(--color-muted)]">
                     {formatCurrency(acc.daily_withdrawn)} / {formatCurrency(acc.daily_limit)}
                   </td>
-                  <td className="py-2.5 px-3 text-slate-300">{acc.failed_attempts} / 3</td>
+                  <td className="py-2.5 px-3 text-[var(--color-text)]">{acc.failed_attempts} / 3</td>
                   <td className="py-2.5 px-3">
                     <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold border ${
                       acc.is_locked
-                        ? 'bg-rose-500/10 text-rose-400 border-rose-500/30'
-                        : 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30'
+                        ? 'bg-rose-500/10 text-rose-500 dark:text-rose-400 border-rose-500/30'
+                        : 'bg-emerald-500/10 text-emerald-500 dark:text-emerald-400 border-emerald-500/30'
                     }`}>
                       {acc.is_locked ? 'BLOCKED' : 'ACTIVE'}
                     </span>
@@ -288,13 +288,13 @@ export default function AdminTestPanel() {
                     {acc.is_locked ? (
                       <button
                         onClick={() => handleUnlock(acc.card_id)}
-                        className="px-2.5 py-1 rounded-lg bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 border border-rose-500/40 text-[11px] font-bold flex items-center space-x-1 ml-auto"
+                        className="px-2.5 py-1 rounded-lg bg-rose-500/20 hover:bg-rose-500/30 text-rose-600 dark:text-rose-300 border border-rose-500/40 text-[11px] font-bold flex items-center space-x-1 ml-auto"
                       >
                         <Unlock className="h-3 w-3" />
                         <span>Unlock</span>
                       </button>
                     ) : (
-                      <span className="text-slate-600 text-[11px]">Normal</span>
+                      <span className="text-[var(--color-muted)] text-[11px]">Normal</span>
                     )}
                   </td>
                 </tr>

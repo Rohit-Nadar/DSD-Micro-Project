@@ -97,7 +97,7 @@ export default function ReceiptModal({ transaction, onClose }) {
 
           <button
             onClick={handlePrint}
-            className="p-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs transition-colors"
+            className="p-2.5 rounded-xl bg-[var(--color-card)] hover:bg-[var(--color-hover)] text-[var(--color-text)] border border-[var(--color-border)] text-xs transition-colors"
             title="Print Receipt"
           >
             <Printer className="h-4 w-4" />
@@ -105,7 +105,7 @@ export default function ReceiptModal({ transaction, onClose }) {
 
           <button
             onClick={onClose}
-            className="p-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs transition-colors"
+            className="p-2.5 rounded-xl bg-[var(--color-card)] hover:bg-[var(--color-hover)] text-[var(--color-text)] border border-[var(--color-border)] text-xs transition-colors"
             title="Close"
           >
             <X className="h-4 w-4" />

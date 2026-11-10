@@ -39,7 +39,7 @@ export default function Navbar({
   ];
 
   return (
-    <header className="sticky top-0 z-50 backdrop-blur-md bg-slate-900/90 dark:bg-slate-950/90 border-b border-slate-800 transition-colors">
+    <header className="sticky top-0 z-50 backdrop-blur-md bg-[var(--color-card)]/95 border-b border-[var(--color-border)] transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           
@@ -78,7 +78,7 @@ export default function Navbar({
                   className={`flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
                     isActive
                       ? 'bg-teal-500/20 text-teal-300 border border-teal-500/40 shadow-sm shadow-teal-500/10'
-                      : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
+                      : 'text-[var(--color-muted)] hover:text-[var(--color-text)] hover:bg-[var(--color-hover)]'
                   }`}
                 >
                   <Icon className={`h-4 w-4 ${isActive ? 'text-teal-400' : 'text-slate-400'}`} />
@@ -114,9 +114,23 @@ export default function Navbar({
             <button
               onClick={handleSoundToggle}
               title={soundOn ? "Sound Effects ON (Click to Mute)" : "Sound Effects MUTED (Click to Enable)"}
-              className="p-2 rounded-lg bg-slate-800/80 hover:bg-slate-750 text-slate-300 hover:text-teal-400 border border-slate-700/60 transition-colors"
+              className="p-2 rounded-lg bg-[var(--color-hover)] hover:bg-[var(--color-border)] text-[var(--color-muted)] hover:text-teal-400 border border-[var(--color-border)] transition-colors"
             >
-              {soundOn ? <Volume2 className="h-4 w-4 text-teal-400" /> : <VolumeX className="h-4 w-4 text-slate-500" />}
+              {soundOn ? <Volume2 className="h-4 w-4 text-teal-400" /> : <VolumeX className="h-4 w-4 text-[var(--color-muted)]" />}
+            </button>
+
+            {/* ☀️ / 🌙 Light / Dark Mode Toggle */}
+            <button
+              onClick={() => setIsDarkMode(!isDarkMode)}
+              title={isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+              className={`p-2 rounded-lg border transition-all ${
+                isDarkMode
+                  ? 'bg-amber-500/10 text-amber-400 border-amber-500/30 hover:bg-amber-500/20'
+                  : 'bg-slate-800/10 text-slate-600 border-slate-300 hover:bg-slate-100'
+              }`}
+              aria-label={isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+            >
+              {isDarkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
             </button>
 
             {/* Reset Demo button */}
@@ -126,9 +140,9 @@ export default function Navbar({
                 onResetDemo();
               }}
               title="Reset Demo State to Initial Factory State (₹5,000 baseline, unlocked)"
-              className="hidden sm:flex items-center space-x-1.5 px-2.5 py-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-750 text-slate-300 hover:text-white border border-slate-700/60 text-xs font-medium transition-colors"
+              className="hidden sm:flex items-center space-x-1.5 px-2.5 py-1.5 rounded-lg bg-[var(--color-hover)] hover:bg-[var(--color-border)] text-[var(--color-muted)] hover:text-[var(--color-text)] border border-[var(--color-border)] text-xs font-medium transition-colors"
             >
-              <RotateCcw className="h-3.5 w-3.5 text-slate-400" />
+              <RotateCcw className="h-3.5 w-3.5 text-[var(--color-muted)]" />
               <span>Reset State</span>
             </button>
           </div>

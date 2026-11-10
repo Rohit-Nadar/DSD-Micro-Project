@@ -10,9 +10,23 @@ import { isSoundEnabled } from './utils/audio';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('kiosk');
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  // Dark mode is default; persist user preference in localStorage
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    const saved = localStorage.getItem('atmDarkMode');
+    return saved === null ? true : saved === 'true';
+  });
   const [backendOnline, setBackendOnline] = useState(false);
   const [soundOn, setSoundOn] = useState(true);
+
+  // Apply / remove the "dark" class on <html> whenever isDarkMode changes
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+    localStorage.setItem('atmDarkMode', String(isDarkMode));
+  }, [isDarkMode]);
 
   // Check backend health on mount
   useEffect(() => {
@@ -40,7 +54,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-950 text-slate-100 selection:bg-teal-500 selection:text-white">
+    <div className="min-h-screen flex flex-col bg-[var(--color-surface)] text-[var(--color-text)] selection:bg-teal-500 selection:text-white transition-colors duration-300">
       {/* Top Navbar */}
       <Navbar
         activeTab={activeTab}
@@ -63,16 +77,16 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-slate-800/80 bg-slate-950/80 backdrop-blur-sm py-6 text-xs text-slate-400">
+      <footer className="border-t border-[var(--color-border)] bg-[var(--color-card)]/90 backdrop-blur-sm py-6 text-xs text-[var(--color-muted)] transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="space-y-1 text-center sm:text-left">
-            <div className="font-semibold text-slate-200">
+            <div className="font-semibold text-[var(--color-text)]">
               ATM Security & Transaction Verification System
             </div>
             <div>
               25DC205 – Digital System Design for Data Science & Cybersecurity
             </div>
-            <div className="text-[11px] text-slate-400">
+            <div className="text-[11px] text-[var(--color-muted)]">
               Karunya Institute of Technology and Sciences • Division of Physical Sciences
             </div>
           </div>

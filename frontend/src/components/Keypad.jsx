@@ -40,12 +40,12 @@ export default function Keypad({
   }, [disabled, onDigitPress, onClear, onCancel, onEnter]);
 
   return (
-    <div className="bg-slate-900/90 border border-slate-700/80 rounded-2xl p-4 sm:p-5 shadow-2xl backdrop-blur-md max-w-sm mx-auto">
-      <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-800 text-xs text-slate-400">
-        <span className="font-mono uppercase tracking-wider font-semibold text-slate-400">
+    <div className="bg-[var(--color-card)] border border-[var(--color-border)] rounded-2xl p-4 sm:p-5 shadow-2xl backdrop-blur-md max-w-sm mx-auto transition-colors">
+      <div className="flex items-center justify-between pb-3 mb-3 border-b border-[var(--color-border)] text-xs text-[var(--color-muted)]">
+        <span className="font-mono uppercase tracking-wider font-semibold text-[var(--color-text)]">
           Hardware Keypad (FR-02)
         </span>
-        <span className="px-2 py-0.5 rounded bg-slate-800 text-[10px] text-teal-400 border border-slate-700">
+        <span className="px-2 py-0.5 rounded bg-[var(--color-hover)] text-[10px] text-teal-600 dark:text-teal-400 border border-[var(--color-border)] font-mono font-medium">
           Tactile BCD
         </span>
       </div>
@@ -66,14 +66,14 @@ export default function Keypad({
                   }}
                   className={`relative py-3.5 sm:py-4 rounded-xl text-lg sm:text-xl font-bold font-mono transition-all transform active:scale-95 shadow-md flex items-center justify-center ${
                     isSpecial
-                      ? 'bg-slate-800/40 text-slate-600 border border-slate-800 cursor-not-allowed'
-                      : 'bg-gradient-to-b from-slate-700 to-slate-800 hover:from-slate-650 hover:to-slate-750 text-slate-100 border-t border-slate-600 border-b-2 border-b-slate-900 shadow-slate-950/50 hover:border-teal-500/50 active:translate-y-0.5'
+                      ? 'bg-[var(--color-card2)] text-[var(--color-muted)] border border-[var(--color-border)] cursor-not-allowed opacity-50'
+                      : 'bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-100 border border-slate-300 dark:border-slate-700 shadow-sm dark:shadow-slate-950/50 hover:border-teal-500 active:translate-y-0.5'
                   }`}
                 >
-                  <span className="drop-shadow">{d}</span>
+                  <span className="drop-shadow-sm">{d}</span>
                   {/* Subtle Braille pip on '5' key */}
                   {d === '5' && (
-                    <span className="absolute bottom-1.5 h-1 w-1 rounded-full bg-slate-400" />
+                    <span className="absolute bottom-1.5 h-1 w-1 rounded-full bg-slate-400 dark:bg-slate-500" />
                   )}
                 </button>
               );
@@ -121,7 +121,7 @@ export default function Keypad({
         </div>
       </div>
 
-      <div className="mt-3 text-[11px] text-center text-slate-500 font-mono">
+      <div className="mt-3 text-[11px] text-center text-[var(--color-muted)] font-mono">
         Keyboard Shortcuts: 0–9 Digits • Enter [Confirm] • Backspace [Clear] • Esc [Cancel]
       </div>
     </div>

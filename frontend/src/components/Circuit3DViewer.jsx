@@ -569,15 +569,15 @@ export default function Circuit3DViewer() {
   return (
     <div className="space-y-4 animate-fade-in">
       {/* Top Header & View Controls */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 bg-slate-900/90 border border-slate-800 p-4 rounded-3xl shadow-xl">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 bg-[var(--color-card)] border border-[var(--color-border)] p-4 rounded-3xl shadow-xl transition-colors">
         <div>
           <div className="flex items-center space-x-2">
-            <Box className="h-5 w-5 text-teal-400" />
-            <h2 className="text-lg font-bold text-white font-['Chakra_Petch']">
+            <Box className="h-5 w-5 text-teal-500 dark:text-teal-400" />
+            <h2 className="text-lg font-bold text-[var(--color-text)] font-['Chakra_Petch']">
               3D Interactive Circuit Explorer (Simulink Model)
             </h2>
           </div>
-          <p className="text-xs text-slate-400">
+          <p className="text-xs text-[var(--color-muted)]">
             Real-time WebGL visualization of Sections A–F • Click any chip or use the section selector below
           </p>
         </div>
@@ -585,14 +585,14 @@ export default function Circuit3DViewer() {
         {/* View Mode & Pulse Triggers */}
         <div className="flex flex-wrap items-center gap-2">
           {/* 3D vs Schematic Toggle */}
-          <div className="bg-slate-950 p-1 rounded-xl border border-slate-800 flex items-center">
+          <div className="bg-[var(--color-card2)] p-1 rounded-xl border border-[var(--color-border)] flex items-center">
             <button
               onClick={() => {
                 playKeyBeep(1000, 0.04);
                 setViewMode('3D');
               }}
               className={`px-3 py-1.5 rounded-lg text-xs font-bold font-mono transition-all ${
-                viewMode === '3D' ? 'bg-teal-500 text-slate-950 shadow-md' : 'text-slate-400 hover:text-white'
+                viewMode === '3D' ? 'bg-teal-500 text-white dark:text-slate-950 shadow-md' : 'text-[var(--color-muted)] hover:text-[var(--color-text)]'
               }`}
             >
               3D WebGL
@@ -603,7 +603,7 @@ export default function Circuit3DViewer() {
                 setViewMode('SCHEMATIC');
               }}
               className={`px-3 py-1.5 rounded-lg text-xs font-bold font-mono transition-all ${
-                viewMode === 'SCHEMATIC' ? 'bg-teal-500 text-slate-950 shadow-md' : 'text-slate-400 hover:text-white'
+                viewMode === 'SCHEMATIC' ? 'bg-teal-500 text-white dark:text-slate-950 shadow-md' : 'text-[var(--color-muted)] hover:text-[var(--color-text)]'
               }`}
             >
               Simulink Schematics
@@ -612,7 +612,7 @@ export default function Circuit3DViewer() {
 
           <button
             onClick={() => triggerSignalPulse('WITHDRAW')}
-            className="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-amber-500/20 text-amber-300 hover:bg-amber-500/30 border border-amber-500/40 text-xs font-bold font-mono transition-colors"
+            className="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-amber-500/20 text-amber-500 dark:text-amber-300 hover:bg-amber-500/30 border border-amber-500/40 text-xs font-bold font-mono transition-colors"
           >
             <Zap className="h-3.5 w-3.5" />
             <span>Pulse Withdraw (00)</span>
@@ -620,7 +620,7 @@ export default function Circuit3DViewer() {
 
           <button
             onClick={() => triggerSignalPulse('DEPOSIT')}
-            className="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-emerald-500/20 text-emerald-300 hover:bg-emerald-500/30 border border-emerald-500/40 text-xs font-bold font-mono transition-colors"
+            className="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-emerald-500/20 text-emerald-500 dark:text-emerald-300 hover:bg-emerald-500/30 border border-emerald-500/40 text-xs font-bold font-mono transition-colors"
           >
             <Zap className="h-3.5 w-3.5" />
             <span>Pulse Deposit (01)</span>
@@ -628,7 +628,7 @@ export default function Circuit3DViewer() {
 
           <button
             onClick={() => handleSelectSection('ALL')}
-            className="p-1.5 rounded-xl bg-slate-800 hover:bg-slate-750 text-slate-300 border border-slate-700 transition-colors"
+            className="p-1.5 rounded-xl bg-[var(--color-hover)] hover:bg-[var(--color-border)] text-[var(--color-text)] border border-[var(--color-border)] transition-colors"
             title="Reset Camera View to Default"
           >
             <RotateCcw className="h-4 w-4" />
@@ -644,8 +644,8 @@ export default function Circuit3DViewer() {
             onClick={() => handleSelectSection(sec)}
             className={`px-3.5 py-1.5 rounded-xl text-xs font-mono font-bold whitespace-nowrap transition-all ${
               selectedSection === sec
-                ? 'bg-teal-500 text-slate-950 shadow-lg shadow-teal-500/20 scale-105'
-                : 'bg-slate-900/80 hover:bg-slate-800 text-slate-400 border border-slate-800'
+                ? 'bg-teal-500 text-white dark:text-slate-950 shadow-lg shadow-teal-500/20 scale-105'
+                : 'bg-[var(--color-card)] hover:bg-[var(--color-hover)] text-[var(--color-muted)] border border-[var(--color-border)]'
             }`}
           >
             {sec === 'ALL' ? 'View Entire Circuit (A–F)' : `Section ${sec}`}
@@ -655,51 +655,51 @@ export default function Circuit3DViewer() {
 
       {/* 3D WebGL Canvas Viewport OR Schematic View */}
       {viewMode === '3D' ? (
-        <div className="relative w-full h-[480px] sm:h-[530px] rounded-3xl overflow-hidden border border-slate-800 shadow-2xl bg-slate-950">
+        <div className="relative w-full h-[480px] sm:h-[530px] rounded-3xl overflow-hidden border border-[var(--color-border)] shadow-2xl bg-slate-950">
           <div ref={mountRef} className="w-full h-full cursor-grab active:cursor-grabbing" />
 
           {/* Floating HUD Card for Selected Section */}
-          <div className="absolute bottom-4 left-4 right-4 sm:right-auto sm:max-w-md bg-slate-900/95 backdrop-blur-md border border-slate-700/80 rounded-2xl p-4 shadow-2xl space-y-2 pointer-events-auto animate-slide-up">
-            <div className="flex items-center justify-between pb-2 border-b border-slate-800">
+          <div className="absolute bottom-4 left-4 right-4 sm:right-auto sm:max-w-md bg-[var(--color-card)]/95 backdrop-blur-md border border-[var(--color-border)] rounded-2xl p-4 shadow-2xl space-y-2 pointer-events-auto animate-slide-up transition-colors">
+            <div className="flex items-center justify-between pb-2 border-b border-[var(--color-border)]">
               <div className="flex items-center space-x-2">
-                <span className="h-6 w-6 rounded-lg bg-teal-500/20 text-teal-300 border border-teal-500/40 flex items-center justify-center text-xs font-bold font-mono">
+                <span className="h-6 w-6 rounded-lg bg-teal-500/20 text-teal-600 dark:text-teal-300 border border-teal-500/40 flex items-center justify-center text-xs font-bold font-mono">
                   {currentInfo.letter}
                 </span>
-                <span className="font-bold text-sm text-white font-['Chakra_Petch']">
+                <span className="font-bold text-sm text-[var(--color-text)] font-['Chakra_Petch']">
                   {currentInfo.title}
                 </span>
               </div>
-              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-teal-400">
+              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[var(--color-card2)] text-teal-600 dark:text-teal-400 border border-[var(--color-border)]">
                 Subsystem Active
               </span>
             </div>
 
-            <p className="text-xs text-slate-300 leading-relaxed">
+            <p className="text-xs text-[var(--color-text)] leading-relaxed">
               {currentInfo.desc}
             </p>
 
             <div className="pt-1.5 text-[11px] font-mono space-y-1">
-              <div className="text-teal-300 bg-slate-950/90 p-2.5 rounded-xl border border-slate-800">
-                <span className="text-slate-500 block text-[10px]">EQUATION / SPECIFICATION:</span>
+              <div className="text-teal-600 dark:text-teal-300 bg-[var(--color-card2)] p-2.5 rounded-xl border border-[var(--color-border)]">
+                <span className="text-[var(--color-muted)] block text-[10px]">EQUATION / SPECIFICATION:</span>
                 <strong className="text-xs">{currentInfo.equation}</strong>
               </div>
 
-              <div className="text-slate-400 text-[11px] pt-1">
-                <span className="text-slate-500 text-[10px] block">SIMULINK / HARDWARE BLOCKS:</span>
+              <div className="text-[var(--color-muted)] text-[11px] pt-1">
+                <span className="text-[var(--color-muted)] text-[10px] block">SIMULINK / HARDWARE BLOCKS:</span>
                 {currentInfo.blocks}
               </div>
             </div>
           </div>
 
           {/* Floating Instructions Pill */}
-          <div className="absolute top-4 right-4 bg-slate-900/80 backdrop-blur-md border border-slate-700/80 rounded-xl px-3 py-1.5 text-[11px] font-mono text-slate-300 shadow-lg flex items-center space-x-2">
+          <div className="absolute top-4 right-4 bg-[var(--color-card)]/80 backdrop-blur-md border border-[var(--color-border)] rounded-xl px-3 py-1.5 text-[11px] font-mono text-[var(--color-text)] shadow-lg flex items-center space-x-2">
             <span className="h-2 w-2 rounded-full bg-teal-400 animate-ping" />
             <span>Click & Drag to Rotate • Wheel to Zoom • Click Chip to Inspect</span>
           </div>
 
           {/* Active Pulse Banner */}
           {activeSignal && (
-            <div className="absolute top-4 left-4 bg-amber-500/20 border border-amber-500/40 text-amber-300 px-3 py-1 rounded-xl text-xs font-mono font-bold animate-pulse flex items-center space-x-1.5">
+            <div className="absolute top-4 left-4 bg-amber-500/20 border border-amber-500/40 text-amber-500 dark:text-amber-300 px-3 py-1 rounded-xl text-xs font-mono font-bold animate-pulse flex items-center space-x-1.5">
               <Zap className="h-3.5 w-3.5" />
               <span>Transmitting {activeSignal} Signal across Bus Wires...</span>
             </div>
@@ -707,63 +707,63 @@ export default function Circuit3DViewer() {
         </div>
       ) : (
         /* High-Res Schematic Inspection View */
-        <div className="bg-slate-900/90 border border-slate-800 rounded-3xl p-6 shadow-2xl space-y-4">
-          <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+        <div className="bg-[var(--color-card)] border border-[var(--color-border)] rounded-3xl p-6 shadow-2xl space-y-4 transition-colors">
+          <div className="flex items-center justify-between pb-3 border-b border-[var(--color-border)]">
             <div>
-              <h3 className="font-bold text-white text-base font-['Chakra_Petch']">
+              <h3 className="font-bold text-[var(--color-text)] text-base font-['Chakra_Petch']">
                 Simulink Hardware Circuit Diagrams (Original Materials)
               </h3>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-[var(--color-muted)]">
                 High-resolution diagrams extracted from Continuous Internal Examination documentation
               </p>
             </div>
-            <span className="text-xs font-mono text-teal-400 bg-teal-500/10 px-2.5 py-1 rounded-lg border border-teal-500/30">
+            <span className="text-xs font-mono text-teal-600 dark:text-teal-400 bg-teal-500/10 px-2.5 py-1 rounded-lg border border-teal-500/30">
               Verified 25DC205
             </span>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-2">
-              <span className="font-mono text-xs font-bold text-teal-400 block">
+            <div className="bg-[var(--color-card2)] p-4 rounded-2xl border border-[var(--color-border)] space-y-2">
+              <span className="font-mono text-xs font-bold text-teal-600 dark:text-teal-400 block">
                 Figure 1: Modular System Architecture (Sections A through F)
               </span>
               <img 
                 src="/assets/ppt_image7.png" 
                 alt="System Architecture" 
-                className="w-full h-56 object-contain rounded-xl bg-slate-900/60 p-2"
+                className="w-full h-56 object-contain rounded-xl bg-white dark:bg-slate-900/60 p-2"
               />
             </div>
 
-            <div className="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-2">
-              <span className="font-mono text-xs font-bold text-teal-400 block">
+            <div className="bg-[var(--color-card2)] p-4 rounded-2xl border border-[var(--color-border)] space-y-2">
+              <span className="font-mono text-xs font-bold text-teal-600 dark:text-teal-400 block">
                 Figure 2: ALU 74HC283 Adder & 74HC85 Magnitude Comparator
               </span>
               <img 
                 src="/assets/image8.png" 
                 alt="ALU Circuit" 
-                className="w-full h-56 object-contain rounded-xl bg-slate-900/60 p-2"
+                className="w-full h-56 object-contain rounded-xl bg-white dark:bg-slate-900/60 p-2"
               />
             </div>
 
-            <div className="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-2">
-              <span className="font-mono text-xs font-bold text-teal-400 block">
+            <div className="bg-[var(--color-card2)] p-4 rounded-2xl border border-[var(--color-border)] space-y-2">
+              <span className="font-mono text-xs font-bold text-teal-600 dark:text-teal-400 block">
                 Figure 3: Sequential Balance Memory Subsystem (Unit Delay 1/z)
               </span>
               <img 
                 src="/assets/ppt_image10.png" 
                 alt="Sequential Balance Memory" 
-                className="w-full h-56 object-contain rounded-xl bg-slate-900/60 p-2"
+                className="w-full h-56 object-contain rounded-xl bg-white dark:bg-slate-900/60 p-2"
               />
             </div>
 
-            <div className="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-2">
-              <span className="font-mono text-xs font-bold text-teal-400 block">
+            <div className="bg-[var(--color-card2)] p-4 rounded-2xl border border-[var(--color-border)] space-y-2">
+              <span className="font-mono text-xs font-bold text-teal-600 dark:text-teal-400 block">
                 Figure 4: Authentication Unit (Dual Comparators & AND Gate)
               </span>
               <img 
                 src="/assets/ppt_image8.png" 
                 alt="Authentication Logic" 
-                className="w-full h-56 object-contain rounded-xl bg-slate-900/60 p-2"
+                className="w-full h-56 object-contain rounded-xl bg-white dark:bg-slate-900/60 p-2"
               />
             </div>
           </div>

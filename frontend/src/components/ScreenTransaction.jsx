@@ -126,39 +126,39 @@ export default function ScreenTransaction({
             playKeyBeep(800, 0.04);
             onBack();
           }}
-          className="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-700 hover:border-teal-500 text-xs font-semibold text-slate-300 hover:text-white transition-colors"
+          className="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-[var(--color-card)] border border-[var(--color-border)] hover:border-teal-500 text-xs font-semibold text-[var(--color-muted)] hover:text-[var(--color-text)] transition-colors"
         >
           <ArrowLeft className="h-4 w-4" />
           <span>Back to Menu</span>
         </button>
 
-        <span className="text-xs font-mono text-teal-400">
-          Avail Bal: <strong className="text-white">{formatCurrency(currentBal)}</strong>
+        <span className="text-xs font-mono text-teal-500 dark:text-teal-400">
+          Avail Bal: <strong className="text-[var(--color-text)]">{formatCurrency(currentBal)}</strong>
         </span>
       </div>
 
       <div className="text-center space-y-1">
-        <h2 className="text-2xl font-bold text-white font-['Chakra_Petch'] tracking-wide">
+        <h2 className="text-2xl font-bold text-[var(--color-text)] font-['Chakra_Petch'] tracking-wide">
           {getTitle()}
         </h2>
-        <p className="text-xs text-slate-400 font-mono">
+        <p className="text-xs text-[var(--color-muted)] font-mono">
           Hardware ALU & Sequential Memory Operations (Sections D & E)
         </p>
       </div>
 
       {/* Main Action Form */}
-      <div className="bg-slate-900/90 border border-slate-700/80 rounded-3xl p-6 shadow-2xl space-y-5">
+      <div className="bg-[var(--color-card)] border border-[var(--color-border)] rounded-3xl p-6 shadow-2xl space-y-5 transition-colors">
         
         {/* Balance Enquiry Direct Review */}
         {actionType === 'BALANCE_ENQUIRY' && (
           <div className="space-y-4 py-4 text-center">
-            <div className="text-xs uppercase font-mono text-slate-400">
+            <div className="text-xs uppercase font-mono text-[var(--color-muted)]">
               Current Balance from 16-bit PIPO Unit Delay Memory
             </div>
-            <div className="text-4xl sm:text-5xl font-black text-emerald-400 font-mono">
+            <div className="text-4xl sm:text-5xl font-black text-emerald-500 dark:text-emerald-400 font-mono">
               {formatCurrency(currentBal)}
             </div>
-            <div className="p-3 bg-slate-950/80 rounded-xl border border-slate-800 text-xs text-slate-400 font-mono">
+            <div className="p-3 bg-[var(--color-card2)] rounded-xl border border-[var(--color-border)] text-xs text-[var(--color-muted)] font-mono">
               Signal REGISTER_WRITE = 0 (Direct Read Path - No Memory Modification)
             </div>
           </div>
@@ -167,13 +167,13 @@ export default function ScreenTransaction({
         {/* Interest Bonus Review */}
         {actionType === 'INTEREST' && (
           <div className="space-y-4 py-4 text-center">
-            <div className="text-xs uppercase font-mono text-slate-400">
+            <div className="text-xs uppercase font-mono text-[var(--color-muted)]">
               Calculated Interest Incentive (FR-10)
             </div>
-            <div className="text-3xl font-black text-teal-400 font-mono">
+            <div className="text-3xl font-black text-teal-500 dark:text-teal-400 font-mono">
               + {formatCurrency(Math.floor(currentBal / 32) + 50)}
             </div>
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-[var(--color-muted)]">
               Annual incentive bonus automatically calculated and ready to credit to your account balance.
             </p>
           </div>
@@ -182,7 +182,7 @@ export default function ScreenTransaction({
         {/* Transfer Destination Card Input */}
         {actionType === 'TRANSFER' && (
           <div className="space-y-3">
-            <label className="block text-xs font-mono uppercase text-slate-300 font-semibold">
+            <label className="block text-xs font-mono uppercase text-[var(--color-text)] font-semibold">
               Recipient 6-Digit Card ID (FR-09)
             </label>
             <input
@@ -191,13 +191,13 @@ export default function ScreenTransaction({
               value={targetCard}
               onChange={(e) => setTargetCard(e.target.value.replace(/\D/g, ''))}
               placeholder="e.g. 100124"
-              className="w-full bg-slate-950 border border-slate-700 focus:border-teal-400 rounded-xl px-4 py-3 text-lg font-mono text-white placeholder-slate-600 outline-none"
+              className="w-full bg-[var(--color-input)] border border-[var(--color-border)] focus:border-teal-400 rounded-xl px-4 py-3 text-lg font-mono text-[var(--color-text)] placeholder-[var(--color-muted)] outline-none"
             />
 
             {/* Quick Demo Recipient Buttons */}
             <div className="space-y-1.5">
-              <span className="text-[11px] text-slate-400 flex items-center space-x-1">
-                <Users className="h-3 w-3 text-teal-400" />
+              <span className="text-[11px] text-[var(--color-muted)] flex items-center space-x-1">
+                <Users className="h-3 w-3 text-teal-500 dark:text-teal-400" />
                 <span>Quick Select Destination Account:</span>
               </span>
               <div className="flex flex-wrap gap-2">
@@ -211,8 +211,8 @@ export default function ScreenTransaction({
                     }}
                     className={`px-2.5 py-1 rounded-lg text-xs font-mono border transition-all ${
                       targetCard === r.card
-                        ? 'bg-teal-500/20 text-teal-300 border-teal-400 font-bold'
-                        : 'bg-slate-850 hover:bg-slate-800 text-slate-300 border-slate-700'
+                        ? 'bg-teal-500/20 text-teal-600 dark:text-teal-300 border-teal-400 font-bold'
+                        : 'bg-[var(--color-hover)] hover:bg-[var(--color-border)] text-[var(--color-text)] border-[var(--color-border)]'
                     }`}
                   >
                     {r.name} ({r.card})
@@ -228,18 +228,18 @@ export default function ScreenTransaction({
           <div className="space-y-4">
             <div>
               <div className="flex items-center justify-between mb-1.5 text-xs">
-                <label className="font-mono uppercase text-slate-300 font-semibold">
+                <label className="font-mono uppercase text-[var(--color-text)] font-semibold">
                   Transaction Amount (INR)
                 </label>
                 {actionType === 'WITHDRAW' && (
-                  <span className="text-slate-400 font-mono text-[11px]">
+                  <span className="text-[var(--color-muted)] font-mono text-[11px]">
                     Daily Limit Remaining: {formatCurrency(remainingDaily)}
                   </span>
                 )}
               </div>
 
               <div className="relative">
-                <span className="absolute left-4 top-3 text-lg font-bold text-slate-500 font-mono">₹</span>
+                <span className="absolute left-4 top-3 text-lg font-bold text-[var(--color-muted)] font-mono">₹</span>
                 <input
                   type="number"
                   min={1}
@@ -247,14 +247,14 @@ export default function ScreenTransaction({
                   value={amount}
                   onChange={(e) => setAmount(e.target.value)}
                   placeholder="Enter amount"
-                  className="w-full bg-slate-950 border border-slate-700 focus:border-teal-400 rounded-xl pl-9 pr-4 py-3 text-xl font-bold font-mono text-white placeholder-slate-600 outline-none"
+                  className="w-full bg-[var(--color-input)] border border-[var(--color-border)] focus:border-teal-400 rounded-xl pl-9 pr-4 py-3 text-xl font-bold font-mono text-[var(--color-text)] placeholder-[var(--color-muted)] outline-none"
                 />
               </div>
             </div>
 
             {/* Quick Preset Buttons */}
             <div>
-              <span className="block text-[11px] text-slate-400 font-mono mb-2">Quick Presets:</span>
+              <span className="block text-[11px] text-[var(--color-muted)] font-mono mb-2">Quick Presets:</span>
               <div className="grid grid-cols-5 gap-2">
                 {presets.map((p) => (
                   <button
@@ -266,8 +266,8 @@ export default function ScreenTransaction({
                     }}
                     className={`py-2 rounded-xl text-xs font-mono font-bold border transition-all ${
                       Number(amount) === p
-                        ? 'bg-teal-500 text-slate-950 border-teal-400 shadow-md shadow-teal-500/20'
-                        : 'bg-slate-950 hover:bg-slate-850 text-slate-300 border-slate-800 hover:border-slate-700'
+                        ? 'bg-teal-500 text-white dark:text-slate-950 border-teal-400 shadow-md shadow-teal-500/20'
+                        : 'bg-[var(--color-card2)] hover:bg-[var(--color-hover)] text-[var(--color-text)] border-[var(--color-border)]'
                     }`}
                   >
                     ₹{p.toLocaleString()}
